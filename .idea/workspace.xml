@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AIAssistantCustomInstructionsStorage">
+    <option name="instructions">
+      <map>
+        <entry key="AIAssistant.VCS.GenerateCommitMessage">
+          <value>
+            <AIAssistantStoredInstruction>
+              <option name="actionId" value="AIAssistant.VCS.GenerateCommitMessage" />
+              <option name="content" value="Avoid overly verbose descriptions or unnecessary details.&#10;Start with a short sentence in imperative form, no more than 50 characters long.&#10;Before message add a conventional commit prefix. &#10;Then leave an empty line and continue with a more detailed explanation.&#10;Write only one sentence for the first part, and two or three sentences at most for the detailed explanation.&#10;Write each feature or fix description on the next line and begin with an asterisk to appear in markdown mode as a dotted list." />
+            </AIAssistantStoredInstruction>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="AngularSettings">
     <option name="innerServiceType" value="AUTO" />
   </component>
@@ -7,43 +21,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5458983-32e4-451f-b1cd-a0a63e0f2723" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/194d6ef2-6c15-4a2b-b4a5-70f03a353cbb.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/194d6ef2-6c15-4a2b-b4a5-70f03a353cbb/storage_v2/_src_/schema/suite_crm.F8zDkg.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/git_toolbox_blame.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jsLinters/jshint.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/php-test-framework.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/phpspec.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/phpunit.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqlDataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/symfony2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/webResources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile.SecondTest" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile.Test" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/compose.override.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/compose.prod.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/compose.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frankenphp/Caddyfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frankenphp/conf.d/10-app.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frankenphp/conf.d/20-app.dev.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frankenphp/conf.d/20-app.prod.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frankenphp/docker-entrypoint.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frankenphp/worker.Caddyfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysql_init/create_and_grant.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bootstrap.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bootstrap.php" afterDir="false" />
+    <list default="true" id="d5458983-32e4-451f-b1cd-a0a63e0f2723" name="Changes" comment="Add IDE, Docker, and config files&#10;&#10;Included new .idea configuration files for various settings such as web resources, Symfony, and PHPSpec. Added comprehensive .dockerignore and a new Dockerfile.Expanded workspace settings and watcher tasks to support SCSS and other configurations.">
+      <change afterPath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,6 +144,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "credentialsType com.jetbrains.php.remote.interpreter.ui.PhpCreateRemoteSdkForm": "Docker",
     "credentialsType com.jetbrains.php.remote.interpreter.ui.PhpInplaceEditRemoteSdkForm": "Docker",
     "git-widget-placeholder": "master",
@@ -202,7 +184,7 @@
     "npm.start:all.executor": "Run",
     "npm.start:shell.executor": "Run",
     "npm.test:core.executor": "Run",
-    "settings.editor.selected.configurable": "advanced.settings",
+    "settings.editor.selected.configurable": "ml.llm.AIAssistantPromptsLibrary",
     "ts.external.directory.path": "/home/skif/.local/share/JetBrains/Toolbox/apps/phpstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   },
@@ -469,8 +451,17 @@
       <workItem from="1728523947918" duration="680000" />
       <workItem from="1728525191547" duration="983000" />
       <workItem from="1728526212074" duration="4227000" />
-      <workItem from="1728531431811" duration="46220000" />
+      <workItem from="1728531431811" duration="47021000" />
     </task>
+    <task id="LOCAL-00001" summary="Add IDE, Docker, and config files&#10;&#10;Included new .idea configuration files for various settings such as web resources, Symfony, and PHPSpec. Added comprehensive .dockerignore and a new Dockerfile.Expanded workspace settings and watcher tasks to support SCSS and other configurations.">
+      <option name="closed" value="true" />
+      <created>1728641178983</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1728641178983</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -516,6 +507,8 @@
     <option name="CHECK_LOCALLY_CHANGED_CONFLICTS_IN_BACKGROUND" value="true" />
     <option name="SHOW_DIRTY_RECURSIVELY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Add IDE, Docker, and config files&#10;&#10;Included new .idea configuration files for various settings such as web resources, Symfony, and PHPSpec. Added comprehensive .dockerignore and a new Dockerfile.Expanded workspace settings and watcher tasks to support SCSS and other configurations." />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>

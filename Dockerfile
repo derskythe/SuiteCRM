@@ -20,8 +20,6 @@ RUN apt-get update ${APT_FLAGS_COMMON} && apt-get install ${APT_FLAGS_PERSISTENT
     file    \
     gettext \
     git     \
-    sudo    \
-    gosu    \
     curl    \
     wget && \
     rm -Rf                                         \
@@ -146,10 +144,6 @@ FROM frankenphp_base AS frankenphp_prod
 ARG TZ="Asia/Baku"
 ARG APP_ENV="prod"
 ARG XDEBUG_MODE="off"
-ARG USER="crm"
-ARG GROUP="crm"
-ARG GID=1000
-ARG UID=1000
 
 #ARG FRANKENPHP_CONFIG="import worker.Caddyfile"
 ENV FRANKENPHP_CONFIG="worker ./public/index.php" \
@@ -159,10 +153,6 @@ ENV FRANKENPHP_CONFIG="worker ./public/index.php" \
     FRANKENPHP_CONFIG=${FRANKENPHP_CONFIG}        \
     DEBIAN_FRONTEND=noninteractive                \
     TERM="xterm-256color"                         \
-    GID="${GID}"                                  \
-    UID="${UID}"                                  \
-    USER="${USER}"                                \
-    GROUP="${GROUP}"                              \
     WORK_DIR="${WORK_DIR}"
 
 
@@ -190,19 +180,9 @@ RUN set -eux; \
     composer run-script --no-dev post-install-cmd; \
     true && \
     chmod +x ./bin/console; \
-    groupadd --gid ${GID} ${GROUP} && \
-    useradd --no-create-home --home-dir ${WORK_DIR} --no-log-init --gid ${GID} --uid ${UID} ${USER} && \
     echo "PS1='\[\033[32m\][\u@\h\[\033[32m\]]\[\033[00m\] \[\033[36m\]\w\[\033[0m\] \[\033[33m\]\$\[\033[00m\] '" >> /root/.bashrc && \
     echo "alias ll='ls -lha --color=auto'" >> /root/.bashrc && \
     echo "alias ls='ls -ah --color=auto'"  >> /root/.bashrc && \
-    cp /root/.bashrc /app/.bashrc && \
-    usermod -aG sudo ${USER} && \
-    usermod -aG wheel ${USER} && \
-    usermod -aG www-data ${USER} && \
-    echo '${USER}   ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/${USER} && \
-    chown -Rf ${USER}:${GROUP} ${WORK_DIR} && \
-    chown -Rf ${USER}:${GROUP} /data/caddy /config/caddy && \
-    chown -Rf ${USER}:${GROUP} ${WORK_DIR} && \
     true && \
     rm -Rf \
       ./frankenphp/ \
@@ -217,7 +197,5 @@ RUN set -eux; \
       /var/cache/debconf/config.dat-old \
     ; \
     sync
-
-ENV COMPOSER_ALLOW_SUPERUSER=0
 
 USER ${USER}
