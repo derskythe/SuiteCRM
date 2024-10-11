@@ -19,7 +19,11 @@
   "config": {
     "vendor-dir": "vendor",
     "platform": {
+<<<<<<< HEAD
       "php": "7.4.0"
+=======
+      "php": "8.2"
+>>>>>>> 5033d6432f (remove lines not worked)
     },
     "optimize-autoloader": true,
     "sort-packages": true,
@@ -33,7 +37,12 @@
     "ext-imap": "Needed for emails module"
   },
   "require": {
+<<<<<<< HEAD
     "php": ">=7.4.0",
+=======
+    "php": ">=8.2",
+    "ext-ctype": "*",
+>>>>>>> 5033d6432f (remove lines not worked)
     "ext-curl": "*",
     "ext-gd": "*",
     "ext-json": "*",
