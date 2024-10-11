@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AngularSettings">
+    <option name="innerServiceType" value="AUTO" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d5458983-32e4-451f-b1cd-a0a63e0f2723" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/194d6ef2-6c15-4a2b-b4a5-70f03a353cbb.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/194d6ef2-6c15-4a2b-b4a5-70f03a353cbb/storage_v2/_src_/schema/suite_crm.F8zDkg.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/git_toolbox_blame.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jsLinters/jshint.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/php-test-framework.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/phpspec.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/phpunit.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqlDataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/symfony2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/webResources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile.SecondTest" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile.Test" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/compose.override.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/compose.prod.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/compose.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frankenphp/Caddyfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frankenphp/conf.d/10-app.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frankenphp/conf.d/20-app.dev.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frankenphp/conf.d/20-app.prod.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frankenphp/docker-entrypoint.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frankenphp/worker.Caddyfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mysql_init/create_and_grant.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/bootstrap.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bootstrap.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="true" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" show_ignored="true" />
+  <component name="ComposerConfigs">
+    <option name="configs">
+      <option value="$PROJECT_DIR$/public/legacy/composer.json" />
+      <option value="$PROJECT_DIR$/public/legacy/include/social/facebook/facebook_sdk/composer.json" />
+    </option>
+  </component>
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution>
+      <phar pharPath="$PROJECT_DIR$/composer_2.phar" interpreterId="a5e7ec65-51ad-4533-96b3-837a186d32d6" />
+    </execution>
+    <testFrameworkAndSyncEnablingMap>
+      <testFrameworkAndSyncEnabling testFramework="PHPSpec" syncEnabling="true" />
+      <testFrameworkAndSyncEnabling testFramework="PHPUnit" syncEnabling="false" />
+      <testFrameworkAndSyncEnabling testFramework="Pest" syncEnabling="true" />
+    </testFrameworkAndSyncEnablingMap>
+  </component>
+  <component name="FileColors">
+    <fileColor scope="All Changed Files" color="Blue" />
+    <fileColor scope="Open Files" color="Gray" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dockerfile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="hotfix" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;derskythe&quot;
+  }
+}</component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1728474193" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="hotfix" />
+                    <option name="lastUsedInstant" value="1728474065" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/salesagility/SuiteCRM-Core.git&quot;,
+    &quot;accountId&quot;: &quot;091bf2c7-9cfb-4bbf-8f35-fbfd89334711&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/.env" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/core/app/shell/src/app/app-initializer.ts" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="NamedScopeManager">
+    <scope name="config" pattern="file[SuiteCRM-Core]:config/*||file[SuiteCRM-Core]:config//*" />
+    <scope name="public" pattern="file[SuiteCRM-Core]:public/*" />
+  </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="PhpWebServerValidation" path_to_validation_script="$PROJECT_DIR$" selected_validation_type="LOCAL" web_path_to_validation_script="http://127.0.0.1/" />
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP Local" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2nBHfunPCmtOlfp8c7LIu8GsvAX" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "credentialsType com.jetbrains.php.remote.interpreter.ui.PhpCreateRemoteSdkForm": "Docker",
+    "credentialsType com.jetbrains.php.remote.interpreter.ui.PhpInplaceEditRemoteSdkForm": "Docker",
+    "git-widget-placeholder": "master",
+    "javascript.karma.karma_node_package_dir": "/home/skif/Projects/SuiteCRM-Core/node_modules/@angular/cli",
+    "javascript.nodejs.core.library.configured.version": "20.18.0",
+    "javascript.nodejs.core.library.typings.version": "20.16.11",
+    "last_opened_file_path": "/home/skif/Projects/SuiteCRM-Core/cache/ddl",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.stylelint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.stylelint": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.protractor.protractor_package": "/usr/lib/node_modules/protractor",
+    "nodejs_interpreter_path": "node",
+    "nodejs_package_manager_path": "npm",
+    "npm.Angular CLI Server.executor": "Run",
+    "npm.build-dev.executor": "Run",
+    "npm.build-dev:common.executor": "Run",
+    "npm.build-dev:core.executor": "Run",
+    "npm.build-dev:defaultExt.executor": "Run",
+    "npm.build-dev:shell.executor": "Run",
+    "npm.build.executor": "Run",
+    "npm.build:common.executor": "Run",
+    "npm.build:core.executor": "Run",
+    "npm.build:defaultExt.executor": "Run",
+    "npm.build:shell.executor": "Run",
+    "npm.e2e.executor": "Run",
+    "npm.gen-index.executor": "Run",
+    "npm.gen-index:common.executor": "Run",
+    "npm.gen-index:core.executor": "Run",
+    "npm.lint.executor": "Run",
+    "npm.ng.executor": "Run",
+    "npm.serve:dist.executor": "Run",
+    "npm.start:all.executor": "Run",
+    "npm.start:shell.executor": "Run",
+    "npm.test:core.executor": "Run",
+    "settings.editor.selected.configurable": "advanced.settings",
+    "ts.external.directory.path": "/home/skif/.local/share/JetBrains/Toolbox/apps/phpstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql",
+      "mariadb"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.build-dev:defaultExt">
+    <configuration name="Tests (common)" type="JavaScriptTestRunnerKarma">
+      <config-file value="$PROJECT_DIR$/core/app/common/karma.conf.js" />
+      <karma-package-dir value="$PROJECT_DIR$/node_modules/@angular/cli" />
+      <working-directory value="$PROJECT_DIR$/core/app/common" />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="Tests (core)" type="JavaScriptTestRunnerKarma">
+      <config-file value="$PROJECT_DIR$/core/app/core/karma.conf.js" />
+      <karma-package-dir value="$PROJECT_DIR$/node_modules/@angular/cli" />
+      <working-directory value="$PROJECT_DIR$/core/app/core" />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="Tests (defaultExt)" type="JavaScriptTestRunnerKarma">
+      <config-file value="$PROJECT_DIR$/extensions/defaultExt/app/karma.conf.js" />
+      <karma-package-dir value="$PROJECT_DIR$/node_modules/@angular/cli" />
+      <working-directory value="$PROJECT_DIR$/extensions/defaultExt" />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="Tests (shell)" type="JavaScriptTestRunnerKarma">
+      <config-file value="$PROJECT_DIR$/core/app/shell/karma.conf.js" />
+      <karma-package-dir value="$PROJECT_DIR$/node_modules/@angular/cli" />
+      <working-directory value="$PROJECT_DIR$/core/app/shell" />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="E2E Tests (SuiteCRM-e2e)" type="JavaScriptTestRunnerProtractor">
+      <config-file value="$PROJECT_DIR$/core/app/shell/e2e/protractor.conf.js" />
+      <node-interpreter value="project" />
+      <protractor-package value="/usr/lib/node_modules/protractor" />
+      <protractor-options value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method v="2" />
+    </configuration>
+    <configuration name="E2E Tests (defaultExt)" type="JavaScriptTestRunnerProtractor">
+      <config-file value="$PROJECT_DIR$/extensions/defaultExt/app/e2e/protractor.conf.js" />
+      <node-interpreter value="project" />
+      <protractor-package value="/usr/lib/node_modules/protractor" />
+      <protractor-options value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
+      <method v="2" />
+    </configuration>
+    <configuration name="public/legacy" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner configuration_file="$PROJECT_DIR$/public/legacy/tests/phpunit.xml.dist" scope="XML" use_alternative_configuration_file="true" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Angular CLI Server" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="build-dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build-dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="build-dev:core" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build-dev:core" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="build-dev:defaultExt" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build-dev:defaultExt" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="build:defaultExt" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build:defaultExt" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start:shell" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start:shell" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="JavaScript Debug.Angular Application" />
+      <item itemvalue="Karma.Tests (common)" />
+      <item itemvalue="Karma.Tests (core)" />
+      <item itemvalue="Karma.Tests (defaultExt)" />
+      <item itemvalue="Karma.Tests (shell)" />
+      <item itemvalue="npm.Angular CLI Server" />
+      <item itemvalue="npm.build-dev:core" />
+      <item itemvalue="npm.build-dev:defaultExt" />
+      <item itemvalue="npm.build:defaultExt" />
+      <item itemvalue="npm.build-dev" />
+      <item itemvalue="npm.start:shell" />
+      <item itemvalue="PHPUnit.public/legacy" />
+      <item itemvalue="Protractor.E2E Tests (defaultExt)" />
+      <item itemvalue="Protractor.E2E Tests (SuiteCRM-e2e)" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.build-dev:defaultExt" />
+        <item itemvalue="npm.build-dev" />
+        <item itemvalue="npm.build:defaultExt" />
+        <item itemvalue="npm.start:shell" />
+        <item itemvalue="npm.build-dev:core" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PS-242.23339.16" />
+        <option value="bundled-php-predefined-a98d8de5180a-90914f2295cb-com.jetbrains.php.sharedIndexes-PS-242.23339.16" />
+        <option value="php-doctrine_collections-970fd879c5a4-a9531fa9" />
+        <option value="php-doctrine_common-970fd879c5a4-192b0725" />
+        <option value="php-doctrine_dbal-970fd879c5a4-a6852277" />
+        <option value="php-doctrine_doctrine_bundle-970fd879c5a4-3e2f5254" />
+        <option value="php-doctrine_inflector-970fd879c5a4-c6654e4d" />
+        <option value="php-doctrine_orm-970fd879c5a4-2dcce468" />
+        <option value="php-egulias_email_validator-970fd879c5a4-9eb4eccc" />
+        <option value="php-fakerphp_faker-970fd879c5a4-24c97faa" />
+        <option value="php-friendsofphp_php_cs_fixer-970fd879c5a4-9f611baa" />
+        <option value="php-friendsofphp_php_cs_fixer-970fd879c5a4-e58df5a5" />
+        <option value="php-friendsofphp_proxy_manager_lts-970fd879c5a4-a42c75d5" />
+        <option value="php-google_auth-970fd879c5a4-e1f99034" />
+        <option value="php-guzzlehttp_guzzle-970fd879c5a4-fb32d013" />
+        <option value="php-guzzlehttp_promises-970fd879c5a4-6e25a05d" />
+        <option value="php-guzzlehttp_psr7-970fd879c5a4-4210a190" />
+        <option value="php-lcobucci_jwt-970fd879c5a4-81ff0973" />
+        <option value="php-masterminds_html5-970fd879c5a4-c08280de" />
+        <option value="php-mockery_mockery-970fd879c5a4-7fbb312b" />
+        <option value="php-monolog_monolog-970fd879c5a4-12f4b811" />
+        <option value="php-nesbot_carbon-970fd879c5a4-bd0c9e3d" />
+        <option value="php-nette_utils-970fd879c5a4-31d281ad" />
+        <option value="php-nikic_php_parser-970fd879c5a4-ea02b00c" />
+        <option value="php-paragonie_random_compat-970fd879c5a4-b58dbecb" />
+        <option value="php-phar_io_version-970fd879c5a4-df0e2d90" />
+        <option value="php-phpdocumentor_reflection_docblock-970fd879c5a4-65730a02" />
+        <option value="php-phpseclib_phpseclib-970fd879c5a4-c318b385" />
+        <option value="php-phpstan_phpstan-970fd879c5a4-9a88ac8f" />
+        <option value="php-phpunit_php_code_coverage-970fd879c5a4-19659224" />
+        <option value="php-phpunit_phpunit-970fd879c5a4-35b87395" />
+        <option value="php-psy_psysh-970fd879c5a4-087440dc" />
+        <option value="php-react_promise-970fd879c5a4-1320ff65" />
+        <option value="php-react_promise-970fd879c5a4-ef86c183" />
+        <option value="php-sebastian_comparator-970fd879c5a4-eb03be14" />
+        <option value="php-symfony_cache-970fd879c5a4-44642cc9" />
+        <option value="php-symfony_config-970fd879c5a4-3d352b2f" />
+        <option value="php-symfony_console-970fd879c5a4-2e98c33a" />
+        <option value="php-symfony_console-970fd879c5a4-ce05fd45" />
+        <option value="php-symfony_css_selector-970fd879c5a4-22b92dd3" />
+        <option value="php-symfony_dependency_injection-970fd879c5a4-09895027" />
+        <option value="php-symfony_dom_crawler-970fd879c5a4-608e55a8" />
+        <option value="php-symfony_error_handler-970fd879c5a4-c9539298" />
+        <option value="php-symfony_event_dispatcher-970fd879c5a4-1a5b5f9d" />
+        <option value="php-symfony_expression_language-970fd879c5a4-428238f2" />
+        <option value="php-symfony_filesystem-970fd879c5a4-f7f4fba0" />
+        <option value="php-symfony_finder-970fd879c5a4-1c868a92" />
+        <option value="php-symfony_finder-970fd879c5a4-581d5f84" />
+        <option value="php-symfony_flex-970fd879c5a4-82166b49" />
+        <option value="php-symfony_framework_bundle-970fd879c5a4-9eeb8a65" />
+        <option value="php-symfony_http_client-970fd879c5a4-f4d943f6" />
+        <option value="php-symfony_http_client_contracts-970fd879c5a4-fcc795b7" />
+        <option value="php-symfony_http_foundation-970fd879c5a4-3cc58230" />
+        <option value="php-symfony_http_kernel-970fd879c5a4-382d1787" />
+        <option value="php-symfony_intl-970fd879c5a4-276adca8" />
+        <option value="php-symfony_mailer-970fd879c5a4-3fc99a3c" />
+        <option value="php-symfony_mime-970fd879c5a4-49bf688a" />
+        <option value="php-symfony_monolog_bridge-970fd879c5a4-35c98b57" />
+        <option value="php-symfony_monolog_bundle-970fd879c5a4-583e9e0e" />
+        <option value="php-symfony_options_resolver-970fd879c5a4-bf1fdfbf" />
+        <option value="php-symfony_polyfill_iconv-970fd879c5a4-51d45ed9" />
+        <option value="php-symfony_process-970fd879c5a4-eb2dee07" />
+        <option value="php-symfony_process-970fd879c5a4-f5bff2e9" />
+        <option value="php-symfony_property_access-970fd879c5a4-65ce992c" />
+        <option value="php-symfony_property_info-970fd879c5a4-aef9d395" />
+        <option value="php-symfony_routing-970fd879c5a4-f49f10e4" />
+        <option value="php-symfony_security_core-970fd879c5a4-e7cfdbeb" />
+        <option value="php-symfony_serializer-970fd879c5a4-c99a29ca" />
+        <option value="php-symfony_string-970fd879c5a4-0463630a" />
+        <option value="php-symfony_string-970fd879c5a4-46409843" />
+        <option value="php-symfony_translation-970fd879c5a4-44617a86" />
+        <option value="php-symfony_twig_bridge-970fd879c5a4-58b17791" />
+        <option value="php-symfony_twig_bundle-970fd879c5a4-90933cb7" />
+        <option value="php-symfony_validator-970fd879c5a4-fe7c156f" />
+        <option value="php-symfony_var_dumper-970fd879c5a4-1e515d35" />
+        <option value="php-symfony_yaml-970fd879c5a4-50d00152" />
+        <option value="php-symfony_yaml-970fd879c5a4-a7f97337" />
+        <option value="php-twig_twig-970fd879c5a4-a6a627dd" />
+        <option value="php-voku_portable_ascii-970fd879c5a4-a9692423" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>$USER_HOME$/.subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d5458983-32e4-451f-b1cd-a0a63e0f2723" name="Changes" comment="" />
+      <created>1728439656349</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1728439656349</updated>
+      <workItem from="1728439657717" duration="64000" />
+      <workItem from="1728439742404" duration="915000" />
+      <workItem from="1728441539567" duration="820000" />
+      <workItem from="1728442368060" duration="4180000" />
+      <workItem from="1728466494165" duration="1146000" />
+      <workItem from="1728468003375" duration="1435000" />
+      <workItem from="1728474228116" duration="1714000" />
+      <workItem from="1728521925096" duration="1976000" />
+      <workItem from="1728523947918" duration="680000" />
+      <workItem from="1728525191547" duration="983000" />
+      <workItem from="1728526212074" duration="4227000" />
+      <workItem from="1728531431811" duration="46220000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="GitHub.CommitStatus" />
+      </list>
+    </option>
+    <option name="SHOW_DETAILS" value="true" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_LOCALLY_CHANGED_CONFLICTS_IN_BACKGROUND" value="true" />
+    <option name="SHOW_DIRTY_RECURSIVELY" value="true" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand>
+      <path>
+        <item name="SuiteCRM-Core" type="b2602c69:ProjectViewProjectNode" />
+        <item name="dir{file:///home/skif/Projects/SuiteCRM-Core}" type="462c0819:PsiDirectoryNode" />
+      </path>
+    </expand>
+    <select />
+  </component>
+</project>
