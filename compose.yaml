@@ -4,11 +4,9 @@ services:
     restart: unless-stopped
     platform: "linux/amd64"
     build:
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.Apache
       context: .
-      target: frankenphp_prod
-      tags:
-        - "suitecrm-app-php:latest"
+#      target: app_prod
     environment:
       TZ: ${TZ:-Asia/Baku}
       SERVER_NAME: ${SERVER_NAME:-localhost}, php:80
@@ -20,11 +18,10 @@ services:
       MERCURE_JWT_SECRET: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
       SYMFONY_VERSION: ${SYMFONY_VERSION:-}
       STABILITY: ${STABILITY:-prod}
-    entrypoint: /bin/bash
     volumes:
-      - caddy_data:/data
-      - caddy_config:/config
-      - ./logs:/app/logs:rw
+      - app-data:/var/www/html
+      - ./logs/app:/var/www/html/logs:rw
+      - ./logs/apache:/var/www/log:rw
     depends_on:
       database:
         condition: service_healthy
@@ -55,8 +52,7 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD:-!ChangeMe!}
       MYSQL_USER: ${MYSQL_USER:-app}
     healthcheck:
-      #test: [ "CMD", "/usr/local/bin/healthcheck.sh" ,"--connect", "--innodb_initialized" ]
-      test: [ "CMD", "/usr/local/bin/healthcheck.sh" ,"--connect" ]
+      test: [ "CMD", "/usr/local/bin/healthcheck.sh" ,"--connect", "--innodb_initialized" ]
       timeout: 5s
       retries: 5
       start_period: 120s
@@ -67,7 +63,6 @@ services:
 
 volumes:
   mysql-data:
-  caddy_data:
-  caddy_config:
+  app-data:
 ###> symfony/mercure-bundle ###
 ###< symfony/mercure-bundle ###
