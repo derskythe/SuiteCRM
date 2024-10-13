@@ -13,7 +13,7 @@ services:
     environment:
       TZ: ${TZ:-Asia/Baku}
       SERVER_NAME: ${SERVER_NAME:-localhost}, php:80
-      DATABASE_URL: mysql://${MYSQL_USER:-app}:${MYSQL_PASSWORD:-!ChangeMe!}@database:3306/${MYSQL_DATABASE:-app}?serverVersion=${MYSQL_VERSION:-8}&charset=${MYSQL_CHARSET:-utf8mb4}      # Run "composer require symfony/mercure-bundle" to install and configure the Mercure integration
+      DATABASE_URL: mysql://${MYSQL_USER:-app}:${MYSQL_PASSWORD:-!ChangeMe!}@database:3306/${MYSQL_DATABASE:-app}?serverVersion=${MYSQL_VERSION:-8}&charset=${MYSQL_CHARSET:-utf8mb4}
       SYMFONY_VERSION: ${SYMFONY_VERSION:-}
       STABILITY: ${STABILITY:-dev}
     volumes:
@@ -21,8 +21,6 @@ services:
           source: app-data
           target: /var/www/html/app
           read_only: false
-#          bind:
-#            create_host_path: true
           volume:
             nocopy: false
         - type: bind
@@ -31,7 +29,7 @@ services:
           read_only: false
           volume:
             nocopy: true
-    entrypoint: /bin/bash
+#    entrypoint: /bin/bash
     depends_on:
       database:
         condition: service_healthy
@@ -72,12 +70,6 @@ services:
       retries: 5
       start_period: 20s
 
-# Mercure is installed as a Caddy module, prevent the Flex recipe from installing another service
-###> symfony/mercure-bundle ###
-###< symfony/mercure-bundle ###
-
 volumes:
   mysql-data:
   app-data:
-###> symfony/mercure-bundle ###
-###< symfony/mercure-bundle ###
