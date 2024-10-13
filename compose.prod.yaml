@@ -1,5 +1,0 @@
-# Production environment override
-services:
-  suitecrm-app-php:
-    environment:
-      APP_SECRET: ${APP_SECRET}

@@ -389,7 +389,6 @@ Temporary Items
 # For development the cache directory can be safely ignored and
 # therefore it is ignored.
 /cache/*
-!/cache/index.html
 
 # The silent upgrade scripts aren't needed.
 /silentUpgrade*.php
@@ -591,3 +590,8 @@ Dockerfile
 Dockerfile.*
 compose.*.yaml
 compose.yaml
+mysql_init
+LICENSE.txt
+*.md
+files.md5
+.editorconfig
