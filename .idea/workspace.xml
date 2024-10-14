@@ -21,8 +21,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5458983-32e4-451f-b1cd-a0a63e0f2723" name="Changes" comment="refactor: improve logger functionality and data source config&#10;&#10;Enhanced logger functionality and refactored data source configurations.&#10;* Changed require paths using __DIR__ for better portability.&#10;* Updated property types and methods to use strict typing.&#10;* Adjusted logger file name generation with sprintf and improved file checks.&#10;* Updated database URL and credentials in .env.test.&#10;* Improved Sugar_Smarty with new plugin registration and utility method.">
+    <list default="true" id="d5458983-32e4-451f-b1cd-a0a63e0f2723" name="Changes" comment="refactor: improve logger functionality and data source config&#10;&#10;Enhanced logger functionality and refactored data source configurations.&#10;* Changed require paths using __DIR__ for better portability.&#10;* Updated property types and methods to use strict typing.&#10;* Adjusted logger file name generation with sprintf and improved file checks.&#10;* Updated database URL and credentials in .env.test.&#10;* Improved Sugar_Smarty with new plugin registration and utility method.&#10;```">
+      <change afterPath="$PROJECT_DIR$/mysql_init/.htaccess" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/legacy/upload/.htaccess" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/legacy/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/public/legacy/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -444,7 +449,8 @@
     "javascript.karma.karma_node_package_dir": "/home/skif/Projects/SuiteCRM-Core/node_modules/@angular/cli",
     "javascript.nodejs.core.library.configured.version": "20.18.0",
     "javascript.nodejs.core.library.typings.version": "20.16.11",
-    "last_opened_file_path": "/home/skif/Projects/SuiteCRM-Core",
+    "last.edited.regexp": "file.jpg",
+    "last_opened_file_path": "/home/skif/Projects/SuiteCRM-Core/public/legacy/build",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.stylelint": "true",
@@ -495,6 +501,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/legacy/build" />
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -770,7 +777,7 @@
       <workItem from="1728800334906" duration="108000" />
       <workItem from="1728800451785" duration="3610000" />
       <workItem from="1728804155825" duration="3533000" />
-      <workItem from="1728814094436" duration="39889000" />
+      <workItem from="1728814094436" duration="40533000" />
     </task>
     <task id="LOCAL-00001" summary="Add IDE, Docker, and config files&#10;&#10;Included new .idea configuration files for various settings such as web resources, Symfony, and PHPSpec. Added comprehensive .dockerignore and a new Dockerfile.Expanded workspace settings and watcher tasks to support SCSS and other configurations.">
       <option name="closed" value="true" />
@@ -804,7 +811,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728866109289</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="refactor: improve logger functionality and data source config&#10;&#10;Enhanced logger functionality and refactored data source configurations.&#10;* Changed require paths using __DIR__ for better portability.&#10;* Updated property types and methods to use strict typing.&#10;* Adjusted logger file name generation with sprintf and improved file checks.&#10;* Updated database URL and credentials in .env.test.&#10;* Improved Sugar_Smarty with new plugin registration and utility method.&#10;```">
+      <option name="closed" value="true" />
+      <created>1728866168174</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1728866168174</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -861,7 +876,8 @@
     <MESSAGE value="chore: remove unused user and group configuration&#10;&#10;Removed sudo and gosu from package list to streamline the Docker image.&#10;Eliminated unused arguments and environment variables related to user configuration.&#10;* Removed USER and GROUP arguments and environment variables.&#10;* Deleted user creation and permission-related commands.&#10;* Cleaned up .idea/workspace.xml configuration file." />
     <MESSAGE value="feat: update data source configuration&#10;&#10;Renamed data source attributes and updated grants to new user 'app'. &#10;Changed default casing to 'lower/lower', and server version to '10.11.9'. &#10;Re-assigned schema and table associations to the new data source." />
     <MESSAGE value="refactor: improve logger functionality and data source config&#10;&#10;Enhanced logger functionality and refactored data source configurations.&#10;* Changed require paths using __DIR__ for better portability.&#10;* Updated property types and methods to use strict typing.&#10;* Adjusted logger file name generation with sprintf and improved file checks.&#10;* Updated database URL and credentials in .env.test.&#10;* Improved Sugar_Smarty with new plugin registration and utility method." />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: improve logger functionality and data source config&#10;&#10;Enhanced logger functionality and refactored data source configurations.&#10;* Changed require paths using __DIR__ for better portability.&#10;* Updated property types and methods to use strict typing.&#10;* Adjusted logger file name generation with sprintf and improved file checks.&#10;* Updated database URL and credentials in .env.test.&#10;* Improved Sugar_Smarty with new plugin registration and utility method." />
+    <MESSAGE value="refactor: improve logger functionality and data source config&#10;&#10;Enhanced logger functionality and refactored data source configurations.&#10;* Changed require paths using __DIR__ for better portability.&#10;* Updated property types and methods to use strict typing.&#10;* Adjusted logger file name generation with sprintf and improved file checks.&#10;* Updated database URL and credentials in .env.test.&#10;* Improved Sugar_Smarty with new plugin registration and utility method.&#10;```" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: improve logger functionality and data source config&#10;&#10;Enhanced logger functionality and refactored data source configurations.&#10;* Changed require paths using __DIR__ for better portability.&#10;* Updated property types and methods to use strict typing.&#10;* Adjusted logger file name generation with sprintf and improved file checks.&#10;* Updated database URL and credentials in .env.test.&#10;* Improved Sugar_Smarty with new plugin registration and utility method.&#10;```" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -5,6 +5,8 @@
 cache/*
 upload/*
 !upload/index.html
+!upload/.htaccess
+
 # Ignore some files and directories from the custom directory.
 custom/
 custom/history/*

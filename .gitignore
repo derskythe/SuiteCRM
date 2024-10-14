@@ -33,7 +33,8 @@ app/**/*.js.map
 *.log
 # Ignore the new upload directories.
 /upload/*
-!/upload/index.html
+!upload/index.html
+!upload/.htaccess
 /upload_backup/
 
 ###> symfony/framework-bundle ###
