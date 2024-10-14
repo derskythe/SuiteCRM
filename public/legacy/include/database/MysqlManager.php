@@ -130,7 +130,7 @@ class MysqlManager extends DBManager
         'relate' => 'varchar',
         'multienum' => 'text',
         'html' => 'text',
-    'emailbody' => 'nvarchar(max)',
+        'emailbody' => 'nvarchar(max)',
         'longhtml' => 'longtext',
         'datetime' => 'datetime',
         'datetimecombo' => 'datetime',
@@ -162,6 +162,11 @@ class MysqlManager extends DBManager
         "disable_keys" => true,
     );
 
+    public function getLog()
+    {
+        return parent::getLog();
+    }
+
     /**
      * Parses and runs queries
      *
@@ -179,14 +184,14 @@ class MysqlManager extends DBManager
         }
 
         parent::countQuery($sql);
-        $GLOBALS['log']->info('Query:' . $sql);
+        parent::getLog()->info('Query:' . $sql);
         $this->checkConnection();
         $this->query_time = microtime(true);
         $this->lastsql = $sql;
         $result = $suppress ? @mysql_query($sql, $this->database) : mysql_query($sql, $this->database);
 
         $this->query_time = microtime(true) - $this->query_time;
-        $GLOBALS['log']->info('Query Execution Time:' . $this->query_time);
+        parent::getLog()->info('Query Execution Time:' . $this->query_time);
 
 
         if ($keepResult) {
@@ -229,7 +234,7 @@ class MysqlManager extends DBManager
      */
     public function disconnect()
     {
-        $GLOBALS['log']->debug('Calling MySQL::disconnect()');
+        parent::getLog()->debug('Calling MySQL::disconnect()');
         if (!empty($this->database)) {
             $this->freeResult();
             mysql_close($this->database);
@@ -270,7 +275,7 @@ class MysqlManager extends DBManager
         if ($start < 0) {
             $start = 0;
         }
-        $GLOBALS['log']->debug('Limit Query:' . $sql . ' Start: ' . $start . ' count: ' . $count);
+        parent::getLog()->debug('Limit Query:' . $sql . ' Start: ' . $start . ' count: ' . $count);
 
         $sql = "$sql LIMIT $start,$count";
         $this->lastsql = $sql;
@@ -320,10 +325,10 @@ class MysqlManager extends DBManager
             if (!empty($data)) {
                 $warning = ' Table:' . $table . ' Data:' . $data;
                 if (!empty($GLOBALS['sugar_config']['check_query_log'])) {
-                    $GLOBALS['log']->fatal($sql);
-                    $GLOBALS['log']->fatal('CHECK QUERY:' . $warning);
+                    parent::getLog()->fatal($sql);
+                    parent::getLog()->fatal('CHECK QUERY:' . $warning);
                 } else {
-                    $GLOBALS['log']->warn('CHECK QUERY:' . $warning);
+                    parent::getLog()->warn('CHECK QUERY:' . $warning);
                 }
             }
         }
@@ -527,7 +532,7 @@ class MysqlManager extends DBManager
                 $configOptions['db_password']
             );
             if (empty($this->database)) {
-                $GLOBALS['log']->fatal("Could not connect to server " . $configOptions['db_host_name'] . " as " . $configOptions['db_user_name'] . ":" . mysql_error());
+                parent::getLog()->fatal("Could not connect to server " . $configOptions['db_host_name'] . " as " . $configOptions['db_user_name'] . ":" . mysql_error());
                 if ($dieOnError) {
                     if (isset($GLOBALS['app_strings']['ERR_NO_DB'])) {
                         sugar_die($GLOBALS['app_strings']['ERR_NO_DB']);
@@ -546,7 +551,7 @@ class MysqlManager extends DBManager
             }
         }
         if (!empty($configOptions['db_name']) && !@mysql_select_db($configOptions['db_name'])) {
-            $GLOBALS['log']->fatal("Unable to select database {$configOptions['db_name']}: " . mysql_error($this->database));
+            parent::getLog()->fatal("Unable to select database {$configOptions['db_name']}: " . mysql_error($this->database));
             if ($dieOnError) {
                 sugar_die($GLOBALS['app_strings']['ERR_NO_DB']);
             } else {
@@ -573,11 +578,11 @@ class MysqlManager extends DBManager
 	}
 
         if (!$this->checkError('Could Not Connect:', $dieOnError)) {
-            $GLOBALS['log']->info("connected to db");
+            parent::getLog()->info("connected to db");
         }
         $this->connectOptions = $configOptions;
 
-        $GLOBALS['log']->info("Connect:" . $this->database);
+        parent::getLog()->info("Connect:" . $this->database);
 
         return true;
     }
@@ -928,7 +933,7 @@ class MysqlManager extends DBManager
                     if ($this->full_text_indexing_installed()) {
                         $columns[] = " FULLTEXT ($fields)";
                     } else {
-                        $GLOBALS['log']->debug(
+                        parent::getLog()->debug(
                             'MYISAM engine is not available/enabled, full-text indexes will be skipped. Skipping:',
                             $name
                         );

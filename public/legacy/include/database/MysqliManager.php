@@ -104,7 +104,7 @@ class MysqliManager extends MysqlManager
      * @see DBManager::$dbType
      */
     public $dbType = 'mysql';
-    public $variant = 'mysqli';
+    public $variant = 'PDO_MYSQL';
     public $priority = 10;
     public $label = 'LBL_MYSQLI';
 
@@ -128,60 +128,47 @@ class MysqliManager extends MysqlManager
             return $this->queryArray($sql, $dieOnError, $msg, $suppress);
         }
 
-        static $queryMD5 = array();
-
-        parent::countQuery($sql);
-        $GLOBALS['log']->info('Query:' . $sql);
-        $this->checkConnection();
-        $this->query_time = microtime(true);
-        $this->lastsql = $sql;
-        if (!empty($sql)) {
-            if ($this->database instanceof mysqli) {
-                try {
-                    $result = $suppress ? @mysqli_query($this->database, $sql) : mysqli_query($this->database, $sql);
-                } catch (Exception $e) {
-                    $result = false;
-                }
-                if ($result === false && !$suppress) {
-                    if (inDeveloperMode()) {
-                        LoggerManager::getLogger()->debug('Mysqli_query failed, error was: ' . $this->lastDbError() . ', query was: ');
-                    }
-                    LoggerManager::getLogger()->fatal('Mysqli_query failed.');
-                }
-            } else {
-                LoggerManager::getLogger()->fatal('Database error: Incorrect link');
-            }
-        } else {
-            $GLOBALS['log']->fatal('MysqliManager: Empty query');
-            $result = null;
-        }
-        $md5 = md5($sql);
-
-        if (empty($queryMD5[$md5])) {
-            $queryMD5[$md5] = true;
-        }
-
-        $this->query_time = microtime(true) - $this->query_time;
-        $GLOBALS['log']->info('Query Execution Time:' . $this->query_time);
-        $this->dump_slow_queries($sql);
-
-        // This is some heavy duty debugging, leave commented out unless you need this:
-        /*
-        $bt = debug_backtrace();
-        for ( $i = count($bt) ; $i-- ; $i > 0 ) {
-            if ( strpos('MysqliManager.php',$bt[$i]['file']) === false ) {
-                $line = $bt[$i];
-            }
-        }
-
-        $GLOBALS['log']->fatal("${line['file']}:${line['line']} ${line['function']} \nQuery: $sql\n");
-        */
-
-
-        if ($keepResult) {
-            $this->lastResult = $result;
-        }
-        $this->checkError($msg . ' Query Failed: ' . $sql, $dieOnError);
+//        static $queryMD5 = array();
+//
+//        parent::countQuery($sql);
+//        parent::getLog()->info('Query:' . $sql);
+//        $this->checkConnection();
+//        $this->query_time = microtime(true);
+//        $this->lastsql = $sql;
+//        if (!empty($sql)) {
+//            if ($this->database instanceof PDO) {
+//                try {
+//                    $result = $suppress ? @mysqli_query($this->database, $sql) : mysqli_query($this->database, $sql);
+//                } catch (Exception $e) {
+//                    $result = false;
+//                }
+//                if ($result === false && !$suppress) {
+//                    if (inDeveloperMode()) {
+//                        parent::getLog()->debug('Mysqli_query failed, error was: ' . $this->lastDbError() . ', query was: ');
+//                    }
+//                    parent::getLog()->fatal('Mysqli_query failed.');
+//                }
+//            } else {
+//                parent::getLog()->fatal('Database error: Incorrect link');
+//            }
+//        } else {
+//            parent::getLog()->fatal('MysqliManager: Empty query');
+//            $result = null;
+//        }
+//        $md5 = md5($sql);
+//
+//        if (empty($queryMD5[$md5])) {
+//            $queryMD5[$md5] = true;
+//        }
+//
+//        $this->query_time = microtime(true) - $this->query_time;
+//        parent::getLog()->info('Query Execution Time:' . $this->query_time);
+//        $this->dump_slow_queries($sql);
+//
+//        if ($keepResult) {
+//            $this->lastResult = $result;
+//        }
+//        $this->checkError($msg . ' Query Failed: ' . $sql, $dieOnError);
 
         return $result;
     }
@@ -193,7 +180,11 @@ class MysqliManager extends MysqlManager
      */
     public function getAffectedRowCount($result)
     {
-        return mysqli_affected_rows($this->getDatabase());
+        if ($result instanceof PDOStatement) {
+            return $result->rowCount();
+        }
+
+        return 0;
     }
 
     /**
@@ -201,13 +192,13 @@ class MysqliManager extends MysqlManager
      *
      * This function can't be reliably implemented on most DB, do not use it.
      * @abstract
-     * @deprecated
-     * @param  resource $result
+     * @param resource $result
      * @return int
+     * @deprecated
      */
     public function getRowCount($result)
     {
-        return mysqli_num_rows($result);
+        return $this->getAffectedRowCount($result);
     }
 
 
@@ -218,14 +209,8 @@ class MysqliManager extends MysqlManager
      */
     public function disconnect()
     {
-        if (isset($GLOBALS['log']) && !is_null($GLOBALS['log'])) {
-            $GLOBALS['log']->debug('Calling MySQLi::disconnect()');
-        }
-        if (!empty($this->database)) {
-            $this->freeResult();
-            if (!@mysqli_close($this->database)) {
-                $GLOBALS['log']->fatal('mysqli_close() failed');
-            }
+        parent::getLog()->debug('Calling MySQLi::disconnect()');
+        if (!isset($this->database) || !($this->database instanceof PDO)) {
             $this->database = null;
         }
     }
@@ -233,10 +218,10 @@ class MysqliManager extends MysqlManager
     /**
      * @see DBManager::freeDbResult()
      */
-    protected function freeDbResult($dbResult)
+    protected function freeDbResult($result)
     {
-        if (!empty($dbResult)) {
-            mysqli_free_result($dbResult);
+        if ($result instanceof PDOStatement) {
+            return $result->closeCursor();
         }
     }
 
@@ -292,8 +277,20 @@ class MysqliManager extends MysqlManager
      */
     public function quote($string)
     {
-        return mysqli_real_escape_string($this->getDatabase(), $this->quoteInternal($string));
+        parent::getLog()->warn(sprintf('No quote on value: %s', $string));
+        return $string;
     }
+
+    protected function getCharsetInfo()
+    {
+        $charset = $this->getOption('charset');
+        if (empty($charset)) {
+            $charset = parent::getDefaultCharset();
+        }
+
+        return $charset;
+    }
+
 
     /**
      * @see DBManager::connect()
@@ -306,76 +303,113 @@ class MysqliManager extends MysqlManager
             $configOptions = $sugar_config['dbconfig'];
         }
 
-        if (!isset($this->database)) {
+        $collation = $this->getOption('collation');
+        $charset = $this->getCharsetInfo();
 
-            //mysqli connector has a separate parameter for port.. We need to separate it out from the host name
-            $dbhost = $configOptions['db_host_name'];
-            $dbport = isset($configOptions['db_port']) ? ($configOptions['db_port'] == '' ? null : $configOptions['db_port']) : null;
+        if (!isset($this->database)) {
+            // mysqli connector has a separate parameter for db_port..
+            // We need to separate it out from the host name
+            $db_host = $configOptions['db_host_name'];
+            $db_name = $configOptions['db_name'];
+            $db_port = isset($configOptions['db_port']) ? ($configOptions['db_port'] == '' ? '3306' : $configOptions['db_port']) : '3306';
 
             $pos = strpos($configOptions['db_host_name'], ':');
             if ($pos !== false) {
-                $dbhost = substr($configOptions['db_host_name'], 0, $pos);
-                $dbport = substr($configOptions['db_host_name'], $pos + 1);
+                $db_host = substr($configOptions['db_host_name'], 0, $pos);
+                $db_port = substr($configOptions['db_host_name'], $pos + 1);
             }
 
-            $this->database = @mysqli_connect(
-                $dbhost,
-                $configOptions['db_user_name'],
-                $configOptions['db_password'],
-                isset($configOptions['db_name']) ? $configOptions['db_name'] : '',
-                $dbport
-            );
-            if (empty($this->database)) {
-                $GLOBALS['log']->fatal("Could not connect to DB server " . $dbhost . " as " . $configOptions['db_user_name'] . ". port " . $dbport . ": " . mysqli_connect_error());
+            $error_msg = '';
+            $dsn = '';
+            try {
+                $dsn = snprintf('mysql:dbname=%s;host=%s;port=%s;', $db_name, $db_host, $db_port);
+                if (!empty($charset)) {
+                    $dsn .= 'charset=' . $charset;
+                }
+                $this->database = new PDO(
+                    $dsn,
+                    $configOptions['db_user_name'],
+                    $configOptions['db_password']);
+            } catch (PDOException $e) {
+                $error_msg = sprintf("%s\nDSN: %s\n%s",
+                    $e->getMessage(),
+                    $dsn,
+                    $e->getTraceAsString());
+            }
+            if (!isset($this->database) || !($this->database instanceof PDO)) {
+                parent::getLog()->fatal("Unable to select database {$configOptions['db_name']}: " . $error_msg);
                 if ($dieOnError) {
-                    if (isset($GLOBALS['app_strings']['ERR_NO_DB'])) {
-                        sugar_die($GLOBALS['app_strings']['ERR_NO_DB']);
-                    } else {
-                        sugar_die("Could not connect to the database. Please refer to suitecrm.log for details (2).");
-                    }
+                    sugar_die(
+                        $GLOBALS['app_strings']['ERR_NO_DB'] . "\n" . $error_msg
+                        ?? "Could not connect to the database. Please refer to suitecrm.log for details (2).\n" . $error_msg);
                 } else {
                     return false;
                 }
             }
         }
 
-        if (!empty($configOptions['db_name']) && !@mysqli_select_db($this->database, $configOptions['db_name'])) {
-            $GLOBALS['log']->fatal("Unable to select database {$configOptions['db_name']}: " . mysqli_connect_error());
-            if ($dieOnError) {
-                if (isset($GLOBALS['app_strings']['ERR_NO_DB'])) {
-                    sugar_die($GLOBALS['app_strings']['ERR_NO_DB']);
-                } else {
-                    sugar_die("Could not connect to the database. Please refer to suitecrm.log for details (2).");
-                }
-            } else {
+        if (!isset($this->database) || !($this->database instanceof PDO)) {
+            parent::getLog()->fatal('Could not connect to the database. Please refer to suitecrm.log for details (1).');
+
+            return false;
+        }
+
+        if (!empty($collation) && !empty($charset)) {
+            if (!$this->executeNonQuery('SET NAMES :names COLLATE :collate',
+                array(
+                    ':names' => $charset,
+                    ':collate' => $collation,
+                ))) {
                 return false;
             }
         }
 
-        $collation = $this->getOption('collation');
-        $charset = $this->getCharset();
-
-        if (!empty($collation) && !empty($charset)) {
-            $names = 'SET NAMES ' . $this->quoted($charset) . ' COLLATE ' . $this->quoted($collation);
-            mysqli_query($this->database, $names);
-        }
-
         if (!empty($charset)) {
-            mysqli_set_charset($this->database, $charset);
-	    }
+            if (!$this->executeNonQuery('SET NAMES :names',
+                array(
+                    ':names' => $charset,
+                ))) {
+                return false;
+            }
+        }
 
         // https://github.com/salesagility/SuiteCRM/issues/7107
         // MySQL 5.7 is stricter regarding missing values in SQL statements and makes some tests fail.
         // Remove STRICT_TRANS_TABLES from sql_mode so we get the old behaviour again.
-        mysqli_query($this->database, "SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode, 'STRICT_TRANS_TABLES', ''))");
-
-        if ($this->checkError('Could Not Connect', $dieOnError)) {
-            $GLOBALS['log']->info("connected to db");
-        }
-
+        $this->executeNonQuery('SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode, :OLD_NAME, :NEW_NAME))',
+            array(
+                ':OLD_NAME' => 'STRICT_TRANS_TABLES',
+                ':NEW_NAME' => '',
+            ));
         $this->connectOptions = $configOptions;
 
         return true;
+    }
+
+    private function executeNonQuery(string $sql, array $dictionary)
+    {
+        if (!($this->database instanceof PDO)) {
+            parent::getLog()->error("Database is not connected");
+            return false;
+        }
+        try {
+            $statement = $this->database->prepare($this->database, $sql);
+            foreach ($dictionary as $key => $value) {
+                $statement->bindParam($key, $value);
+            }
+            $this->database->exec($statement);
+
+            return true;
+        } catch (PDOException $exp) {
+            parent::getLog()->fatal(sprintf(
+                    'Could not prepare statement: %s SQL: %s Values: %s',
+                    $exp->getMessage(),
+                    $sql,
+                    json_encode($dictionary))
+            );
+        }
+
+        return false;
     }
 
     /**
@@ -384,15 +418,9 @@ class MysqliManager extends MysqlManager
      */
     public function lastDbError()
     {
-        if ($this->database) {
-            if (mysqli_errno($this->database)) {
-                return "MySQL error " . mysqli_errno($this->database) . ": " . mysqli_error($this->database);
-            }
-        } else {
-            $err = mysqli_connect_error();
-            if ($err) {
-                return $err;
-            }
+        if (!($this->database instanceof PDO)) {
+            parent::getLog()->error("Database is not connected");
+            return true;
         }
 
         return false;
@@ -400,28 +428,22 @@ class MysqliManager extends MysqlManager
 
     public function getDbInfo()
     {
-        $charsets = $this->getCharsetInfo();
-        $charset_str = array();
-        foreach ($charsets as $name => $value) {
-            $charset_str[] = "$name = $value";
-        }
-
         return array(
-            "MySQLi Version" => @mysqli_get_client_info(),
-            "MySQLi Host Info" => @mysqli_get_host_info($this->database),
-            "MySQLi Server Info" => @mysqli_get_server_info($this->database),
-            "MySQLi Client Encoding" => @mysqli_character_set_name($this->database),
-            "MySQL Character Set Settings" => implode(", ", $charset_str),
+            'MySQLi Version' => 'INVALID',
+            'MySQLi Host Info' => 'INVALID',
+            'MySQLi Server Info' => 'INVALID',
+            'MySQLi Client Encoding' => 'INVALID',
+            'MySQL Character Set Settings' => 'INVALID',
         );
     }
 
     /**
      * Select database
-     * @param string $dbname
+     * @param string $db_name
      */
-    protected function selectDb($dbname)
+    protected function selectDb($db_name)
     {
-        return mysqli_select_db($this->getDatabase(), $dbname);
+        return executeNonQuery('USE :DB_NAME', array(':DB_NAME' => $db_name));
     }
 
     /**
@@ -430,23 +452,11 @@ class MysqliManager extends MysqlManager
      */
     public function valid()
     {
-        return function_exists("mysqli_connect") && empty($GLOBALS['sugar_config']['mysqli_disabled']);
+        return class_exists('PDO') && empty($GLOBALS['sugar_config']['mysqli_disabled']);
     }
 
-    public function compareVarDefs($fielddef1, $fielddef2, $ignoreName = false)
+    public function compareVarDefs($field_type, $field_len, $ignoreName = false)
     {
-        /**
-         * Int lengths are ignored in MySQL versions >= 8.0.19 so we need to ignore when comparing vardefs.
-         */
-        if($fielddef1['type'] == 'int') {
-            $db_version = $this->version();
-            if (!empty($db_version)
-                && version_compare($db_version, '8.0.19') >= 0
-                && strpos($db_version, "MariaDB") === false
-            ) {
-                unset($fielddef2['len']);
-            }
-        }
-        return parent::compareVarDefs($fielddef1, $fielddef2, $ignoreName);
+        return true;
     }
 }
