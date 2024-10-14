@@ -607,3 +607,4 @@ public/legacy/config_override.php
 public/legacy/config_si.php
 public/legacy/custom/modules/logic_hooks.php
 public/legacy/install/status.json
+public/legacy/.installed_checked
