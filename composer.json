@@ -83,7 +83,11 @@
     "zf1/zend-loader": "^1.12",
     "zf1/zend-oauth": "^1.12",
     "zf1/zend-registry": "^1.12",
+<<<<<<< HEAD
     "zf1/zend-search-lucene": "^1.12"
+=======
+    "ext-mysqli": "*"
+>>>>>>> a8dcced530 (feat: enhance logging and Docker configuration)
   },
   "require-dev": {
     "browserstack/browserstack-local": "^1.1",
