@@ -97,6 +97,7 @@ tests/_support/_generated/
 # Composer
 composer.phar
 composer*.phar
+phpunit.phar
 
 # htacess
 >>>>>>> 5033d6432f (remove lines not worked)
@@ -290,10 +291,6 @@ codeception.yml
 # PHPUnit
 
 # Build data
-
-# Composer PHAR
-/composer.phar
-
 # Backup entities generated with doctrine:generate:entities command
 **/Entity/*~
 
@@ -541,6 +538,9 @@ e2e/*.map
 
 # System Files
 .DS_Store/
+<<<<<<< HEAD
 
 
 >>>>>>> 5033d6432f (remove lines not worked)
+=======
+>>>>>>> 31cdc1c377 (chore(deps): Update composer and package dependencies)
