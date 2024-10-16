@@ -6,6 +6,7 @@
     ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "content-hash": "29820e3476bfea767bb41185ea8ec3bf",
     "packages": [
         {
@@ -29,6 +30,9 @@
 =======
     "content-hash": "7aab5012a57562c90eb8c4b74ab08645",
 >>>>>>> a8dcced530 (feat: enhance logging and Docker configuration)
+=======
+    "content-hash": "5eb5f767609bddef3cdc81a0709c4f0d",
+>>>>>>> a18ffbcd27 (chore: Remove index.ts file)
     "packages": [
         {
             "name": "api-platform/core",
@@ -18823,7 +18827,7 @@
 =======
     "minimum-stability": "stable",
     "stability-flags": {},
-    "prefer-stable": true,
+    "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": ">=8.2",
