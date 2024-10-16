@@ -21,13 +21,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5458983-32e4-451f-b1cd-a0a63e0f2723" name="Changes" comment="fix: Update php.ini display_errors setting and fix XML&#10;&#10;* Change php.ini display_errors setting from stdout to Off to enhance error visibility management.&#10;* Update .idea workspace.xml to reflect updated timestamp and new task details.&#10;* Add legacy vendor paths in PHP include path configuration.">
+    <list default="true" id="d5458983-32e4-451f-b1cd-a0a63e0f2723" name="Changes" comment="chore(deps): Update composer dependencies and config&#10;&#10;Update composer dependencies to latest versions and modify configuration files for enhanced stability and performance.&#10;&#10;* Bump versions for various dependencies in composer.json.&#10;* Reflect changes in .idea/workspace.xml to align with updated settings.">
+      <change afterPath="$PROJECT_DIR$/.idea/php-test-framework.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -780,7 +777,7 @@
       <workItem from="1728800451785" duration="3610000" />
       <workItem from="1728804155825" duration="3533000" />
       <workItem from="1728814094436" duration="39787000" />
-      <workItem from="1729091660189" duration="7218000" />
+      <workItem from="1729091660189" duration="7466000" />
     </task>
     <task id="LOCAL-00001" summary="Add IDE, Docker, and config files&#10;&#10;Included new .idea configuration files for various settings such as web resources, Symfony, and PHPSpec. Added comprehensive .dockerignore and a new Dockerfile.Expanded workspace settings and watcher tasks to support SCSS and other configurations.">
       <option name="closed" value="true" />
@@ -862,7 +859,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729096339698</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="chore(deps): Update composer dependencies and config&#10;&#10;Update composer dependencies to latest versions and modify configuration files for enhanced stability and performance.&#10;&#10;* Bump versions for various dependencies in composer.json.&#10;* Reflect changes in .idea/workspace.xml to align with updated settings.">
+      <option name="closed" value="true" />
+      <created>1729099262744</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1729099262744</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -914,7 +919,8 @@
     <MESSAGE value="fix: Taken from develop branch&#10;&#10;* Adjusted white space and indentation in multiple PHP and TS files.&#10;* Commented out configurations in .env and updated composer settings.&#10;* Added detailed file-level comments for autoloading.&#10;* Enhanced error handling and logging in console script." />
     <MESSAGE value="chore: Remove index.ts file&#10;&#10;The index.ts file has been deleted, removing all exports.&#10;* This cleanup may be necessary for project restructuring or refactoring.&#10;* Ensuring all exports are managed directly from their respective modules can improve maintainability." />
     <MESSAGE value="fix: Update php.ini display_errors setting and fix XML&#10;&#10;* Change php.ini display_errors setting from stdout to Off to enhance error visibility management.&#10;* Update .idea workspace.xml to reflect updated timestamp and new task details.&#10;* Add legacy vendor paths in PHP include path configuration." />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: Update php.ini display_errors setting and fix XML&#10;&#10;* Change php.ini display_errors setting from stdout to Off to enhance error visibility management.&#10;* Update .idea workspace.xml to reflect updated timestamp and new task details.&#10;* Add legacy vendor paths in PHP include path configuration." />
+    <MESSAGE value="chore(deps): Update composer dependencies and config&#10;&#10;Update composer dependencies to latest versions and modify configuration files for enhanced stability and performance.&#10;&#10;* Bump versions for various dependencies in composer.json.&#10;* Reflect changes in .idea/workspace.xml to align with updated settings." />
+    <option name="LAST_COMMIT_MESSAGE" value="chore(deps): Update composer dependencies and config&#10;&#10;Update composer dependencies to latest versions and modify configuration files for enhanced stability and performance.&#10;&#10;* Bump versions for various dependencies in composer.json.&#10;* Reflect changes in .idea/workspace.xml to align with updated settings." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
