@@ -98,6 +98,7 @@ tests/_support/_generated/
 composer.phar
 composer*.phar
 phpunit.phar
+/*.phar
 
 # htacess
 >>>>>>> 5033d6432f (remove lines not worked)
