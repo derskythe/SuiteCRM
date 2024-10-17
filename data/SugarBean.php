@@ -48,8 +48,13 @@ require_once "data/Relationships/RelationshipFactory.php";
 =======
 require_once 'include/portability/SaveHandlers/BeanSaveHandlersManager.php';
 require_once 'include/SugarLogger/LoggerTemplate.php';
+<<<<<<< HEAD:data/SugarBean.php
 >>>>>>> 33c1a93007 (fix:: log level):public/legacy/data/SugarBean.php
+=======
+require_once 'include/database/DatabasePDOManager.php';
+>>>>>>> a4497da690 (refactor: correct spacing and formatting issues):public/legacy/data/SugarBean.php
 
+use SuiteCRM\database\DatabasePDOManager;
 
 /**
  * SugarBean is the base class for all business objects in Sugar.  It implements
@@ -83,6 +88,10 @@ class SugarBean
      * @var DBManager $db
      */
     public $db;
+    /**
+     * @var \SuiteCRM\database\DatabasePDOManager
+     */
+    public \SuiteCRM\database\DatabasePDOManager $pdo;
     /**
      * Unique object identifier
      *
@@ -452,6 +461,7 @@ class SugarBean
         global $dictionary;
         static $loaded_definitions = array();
         $this->db = DBManagerFactory::getInstance();
+        $this->pdo = DatabasePDOManager::getInstance();
         if (empty($this->module_name)) {
             $this->module_name = $this->module_dir;
         }
@@ -773,12 +783,12 @@ class SugarBean
                         }
 
 
-                        $column_list = implode(",", array_keys($toInsert));
+                        $column_list = implode(',', array_keys($toInsert));
                         $value_list = "'" . implode("','", array_values($toInsert)) . "'";
 
                         //create the record. todo add error check.
-                        $insert_string = "INSERT into relationships (" . $column_list . ") " .
-                            "values (" . $value_list . ")";
+                        $insert_string = 'INSERT into relationships (' . $column_list . ') ' .
+                            'values (' . $value_list . ')';
                         if ($db instanceof DBManager) {
                             $db->query($insert_string, true);
                         } else {
@@ -848,10 +858,10 @@ class SugarBean
 
         $first = true;
 
-        //Breaking the building process into two loops. The first loop gets a list of all the sub-queries.
-        //The second loop merges the queries and forces them to select the same number of columns
-        //All columns in a sub-subpanel group must have the same aliases
-        //If the subpanel is a datasource function, it can't be a collection
+        // Breaking the building process into two loops. The first loop gets a list of all the sub-queries.
+        // The second loop merges the queries and forces them to select the same number of columns
+        // All columns in a sub-subpanel group must have the same aliases
+        // If the subpanel is a datasource function, it can't be a collection
         // so we just poll that function for the and return that
         foreach ($subpanel_list as $this_subpanel) {
             if ($this_subpanel->isDatasourceFunction()
