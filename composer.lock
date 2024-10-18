@@ -4,10 +4,6 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     "content-hash": "29820e3476bfea767bb41185ea8ec3bf",
     "packages": [
         {
@@ -26,17 +22,7 @@
             },
             "require": {
                 "php": "^5.3.2 || ^7.0 || ^8.0"
-=======
-    "content-hash": "e6392c67e24883020a23788f6088156f",
-=======
-    "content-hash": "7aab5012a57562c90eb8c4b74ab08645",
->>>>>>> a8dcced530 (feat: enhance logging and Docker configuration)
-=======
     "content-hash": "5eb5f767609bddef3cdc81a0709c4f0d",
->>>>>>> a18ffbcd27 (chore: Remove index.ts file)
-=======
-    "content-hash": "fc144121bb70b2efdade186c745c5caf",
->>>>>>> 31cdc1c377 (chore(deps): Update composer and package dependencies)
     "packages": [
         {
             "name": "api-platform/core",
@@ -78,7 +64,6 @@
                 "phpunit/phpunit": "<9.5",
                 "symfony/framework-bundle": "6.4.6 || 7.1.6",
                 "symfony/var-exporter": "<6.1.1"
->>>>>>> 5033d6432f (remove lines not worked)
             },
             "replace": {
                 "api-platform/doctrine-common": "self.version",
@@ -104,10 +89,6 @@
                 "api-platform/validator": "self.version"
             },
             "require-dev": {
-<<<<<<< HEAD
-                "phpstan/phpstan": "^1.4",
-                "symfony/phpunit-bridge": "^4.2 || ^5"
-=======
                 "api-platform/doctrine-common": "^3.4 || ^4.0",
                 "api-platform/doctrine-odm": "^3.4 || ^4.0",
                 "api-platform/doctrine-orm": "^3.4 || ^4.0",
@@ -208,14 +189,10 @@
                 "symfony/uid": "To support Symfony UUID/ULID identifiers.",
                 "symfony/web-profiler-bundle": "To use the data collector.",
                 "webonyx/graphql-php": "To support GraphQL."
->>>>>>> 5033d6432f (remove lines not worked)
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-<<<<<<< HEAD
-                    "dev-main": "3.x-dev"
-=======
                     "dev-3.4": "3.4.x-dev",
                     "dev-main": "4.0.x-dev"
                 },
@@ -231,7 +208,6 @@
                 "thanks": {
                     "name": "api-platform/api-platform",
                     "url": "https://github.com/api-platform/api-platform"
->>>>>>> 5033d6432f (remove lines not worked)
                 }
             },
             "autoload": {
@@ -245,11 +221,6 @@
             ],
             "authors": [
                 {
-<<<<<<< HEAD
-                    "name": "Nils Adermann",
-                    "email": "naderman@naderman.de",
-                    "homepage": "http://www.naderman.de"
-=======
                     "name": "Kévin Dunglas",
                     "email": "kevin@dunglas.fr",
                     "homepage": "https://dunglas.fr"
@@ -505,7 +476,6 @@
                 {
                     "name": "Marco Pivetta",
                     "email": "ocramius@gmail.com"
->>>>>>> 5033d6432f (remove lines not worked)
                 },
                 {
                     "name": "Jordi Boggiano",
@@ -983,10 +953,6 @@
             },
             "dist": {
                 "type": "zip",
-<<<<<<< HEAD
-                "url": "https://api.github.com/repos/dflydev/dflydev-dot-access-data/zipball/f41715465d65213d644d3141a6a93081be5d3549",
-                "reference": "f41715465d65213d644d3141a6a93081be5d3549",
-=======
                 "url": "https://api.github.com/repos/doctrine/cache/zipball/1ca8f21980e770095a31456042471a57bc4c68fb",
                 "reference": "1ca8f21980e770095a31456042471a57bc4c68fb",
                 "shasum": ""
@@ -1372,20 +1338,12 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/doctrine/deprecations/zipball/dfbaa3c2d2e9a9df1118213f3b8b0c597bb99fab",
                 "reference": "dfbaa3c2d2e9a9df1118213f3b8b0c597bb99fab",
->>>>>>> 5033d6432f (remove lines not worked)
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1 || ^8.0"
             },
             "require-dev": {
-<<<<<<< HEAD
-                "phpstan/phpstan": "^0.12.42",
-                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.3",
-                "scrutinizer/ocular": "1.6.0",
-                "squizlabs/php_codesniffer": "^3.5",
-                "vimeo/psalm": "^4.0.0"
-=======
                 "doctrine/coding-standard": "^9",
                 "phpstan/phpstan": "1.4.10 || 1.10.15",
                 "phpstan/phpstan-phpunit": "^1.0",
@@ -2340,7 +2298,6 @@
             },
             "suggest": {
                 "ext-intl": "PHP Internationalization Libraries are required to use the SpoofChecking validation"
->>>>>>> 5033d6432f (remove lines not worked)
             },
             "type": "library",
             "extra": {
@@ -2685,18 +2642,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/googleapis/google-api-php-client/zipball/b653a338c5a658adf6df4bb2f44c2cc02fe7eb1d",
                 "reference": "b653a338c5a658adf6df4bb2f44c2cc02fe7eb1d",
-=======
-            "version": "v2.17.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/googleapis/google-api-php-client.git",
-                "reference": "b1f63d72c44307ec8ef7bf18f1012de35d8944ed"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client/zipball/b1f63d72c44307ec8ef7bf18f1012de35d8944ed",
-                "reference": "b1f63d72c44307ec8ef7bf18f1012de35d8944ed",
->>>>>>> 31cdc1c377 (chore(deps): Update composer and package dependencies)
                 "shasum": ""
             },
             "require": {
@@ -2748,20 +2693,14 @@
             "keywords": [
                 "google"
             ],
-<<<<<<< HEAD
-            "time": "2022-12-19T22:17:11+00:00"
-=======
             "support": {
                 "issues": "https://github.com/googleapis/google-api-php-client/issues",
                 "source": "https://github.com/googleapis/google-api-php-client/tree/v2.17.0"
             },
             "time": "2024-07-10T14:57:54+00:00"
->>>>>>> 31cdc1c377 (chore(deps): Update composer and package dependencies)
         },
         {
             "name": "google/apiclient-services",
-<<<<<<< HEAD
-<<<<<<< HEAD
             "version": "v0.278.0",
             "source": {
                 "type": "git",
@@ -2772,11 +2711,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/3da85d2066b5a8042663e96e7cba3a3f83655961",
                 "reference": "3da85d2066b5a8042663e96e7cba3a3f83655961",
-=======
-            "version": "v0.376.0",
-=======
             "version": "v0.377.0",
->>>>>>> a8dcced530 (feat: enhance logging and Docker configuration)
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
@@ -2784,14 +2719,8 @@
             },
             "dist": {
                 "type": "zip",
-<<<<<<< HEAD
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/013c4fcdda03c804e96c6aad332456e05916c665",
-                "reference": "013c4fcdda03c804e96c6aad332456e05916c665",
->>>>>>> 5033d6432f (remove lines not worked)
-=======
                 "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/912727289dd617a97da7d2700debbe81a59cea19",
                 "reference": "912727289dd617a97da7d2700debbe81a59cea19",
->>>>>>> a8dcced530 (feat: enhance logging and Docker configuration)
                 "shasum": ""
             },
             "require": {
@@ -2818,22 +2747,6 @@
             "keywords": [
                 "google"
             ],
-<<<<<<< HEAD
-            "time": "2022-12-12T01:28:13+00:00"
-        },
-        {
-            "name": "google/auth",
-            "version": "v1.24.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/googleapis/google-auth-library-php.git",
-                "reference": "1f8cff5aa324700d041efd2df1a0855112a2e7ae"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-auth-library-php/zipball/1f8cff5aa324700d041efd2df1a0855112a2e7ae",
-                "reference": "1f8cff5aa324700d041efd2df1a0855112a2e7ae",
-=======
             "support": {
                 "issues": "https://github.com/googleapis/google-api-php-client-services/issues",
                 "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.377.0"
@@ -2852,7 +2765,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/googleapis/google-auth-library-php/zipball/0c25599a91530b5847f129b271c536f75a7563f5",
                 "reference": "0c25599a91530b5847f129b271c536f75a7563f5",
->>>>>>> 5033d6432f (remove lines not worked)
                 "shasum": ""
             },
             "require": {
@@ -2892,16 +2804,12 @@
                 "google",
                 "oauth2"
             ],
-<<<<<<< HEAD
-            "time": "2022-11-28T18:29:23+00:00"
-=======
             "support": {
                 "docs": "https://googleapis.github.io/google-auth-library-php/main/",
                 "issues": "https://github.com/googleapis/google-auth-library-php/issues",
                 "source": "https://github.com/googleapis/google-auth-library-php/tree/v1.42.0"
             },
             "time": "2024-08-26T18:33:48+00:00"
->>>>>>> 5033d6432f (remove lines not worked)
         },
         {
             "name": "google/recaptcha",
@@ -2951,70 +2859,6 @@
             "time": "2020-03-31T17:50:54+00:00"
         },
         {
-<<<<<<< HEAD
-            "name": "grasmash/expander",
-            "version": "2.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/grasmash/expander.git",
-                "reference": "b7cbc1f2fdf9a9c0e253a424c2a4058316b7cb6e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/grasmash/expander/zipball/b7cbc1f2fdf9a9c0e253a424c2a4058316b7cb6e",
-                "reference": "b7cbc1f2fdf9a9c0e253a424c2a4058316b7cb6e",
-                "shasum": ""
-            },
-            "require": {
-                "dflydev/dot-access-data": "^3.0.0",
-                "php": ">=7.1",
-                "psr/log": "^1 | ^2 | ^3"
-            },
-            "require-dev": {
-                "greg-1-anderson/composer-test-scenarios": "^1",
-                "phpunit/phpunit": "^6.0 || ^8.0 || ^9",
-                "squizlabs/php_codesniffer": "^2.7 || ^3.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Grasmash\\Expander\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Matthew Grasmick"
-                }
-            ],
-            "description": "Expands internal property references in PHP arrays file.",
-            "support": {
-                "issues": "https://github.com/grasmash/expander/issues",
-                "source": "https://github.com/grasmash/expander/tree/2.0.3"
-            },
-            "time": "2022-04-25T22:17:46+00:00"
-        },
-        {
-            "name": "guzzlehttp/guzzle",
-            "version": "7.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "b50a2a1251152e43f6a37f0fa053e730a67d25ba"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/b50a2a1251152e43f6a37f0fa053e730a67d25ba",
-                "reference": "b50a2a1251152e43f6a37f0fa053e730a67d25ba",
-=======
             "name": "guzzlehttp/guzzle",
             "version": "7.9.2",
             "source": {
@@ -3026,18 +2870,12 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/guzzle/guzzle/zipball/d281ed313b989f213357e3be1a179f02196ac99b",
                 "reference": "d281ed313b989f213357e3be1a179f02196ac99b",
->>>>>>> 5033d6432f (remove lines not worked)
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-<<<<<<< HEAD
-                "guzzlehttp/promises": "^1.5",
-                "guzzlehttp/psr7": "^1.9 || ^2.4",
-=======
                 "guzzlehttp/promises": "^1.5.3 || ^2.0.3",
                 "guzzlehttp/psr7": "^2.7.0",
->>>>>>> 5033d6432f (remove lines not worked)
                 "php": "^7.2.5 || ^8.0",
                 "psr/http-client": "^1.0",
                 "symfony/deprecation-contracts": "^2.2 || ^3.0"
@@ -3048,14 +2886,9 @@
             "require-dev": {
                 "bamarni/composer-bin-plugin": "^1.8.1",
                 "ext-curl": "*",
-<<<<<<< HEAD
-                "php-http/client-integration-tests": "^3.0",
-                "phpunit/phpunit": "^8.5.29 || ^9.5.23",
-=======
                 "guzzle/client-integration-tests": "3.0.2",
                 "php-http/message-factory": "^1.1",
                 "phpunit/phpunit": "^8.5.39 || ^9.6.20",
->>>>>>> 5033d6432f (remove lines not worked)
                 "psr/log": "^1.1 || ^2.0 || ^3.0"
             },
             "suggest": {
@@ -3134,13 +2967,10 @@
                 "rest",
                 "web service"
             ],
-<<<<<<< HEAD
-=======
             "support": {
                 "issues": "https://github.com/guzzle/guzzle/issues",
                 "source": "https://github.com/guzzle/guzzle/tree/7.9.2"
             },
->>>>>>> 5033d6432f (remove lines not worked)
             "funding": [
                 {
                     "url": "https://github.com/GrahamCampbell",
@@ -3155,22 +2985,6 @@
                     "type": "tidelift"
                 }
             ],
-<<<<<<< HEAD
-            "time": "2022-08-28T15:39:27+00:00"
-        },
-        {
-            "name": "guzzlehttp/promises",
-            "version": "1.5.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/promises.git",
-                "reference": "b94b2807d85443f9719887892882d0329d1e2598"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/b94b2807d85443f9719887892882d0329d1e2598",
-                "reference": "b94b2807d85443f9719887892882d0329d1e2598",
-=======
             "time": "2024-07-24T11:22:20+00:00"
         },
         {
@@ -3185,19 +2999,14 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/guzzle/promises/zipball/6ea8dd08867a2a42619d65c3deb2c0fcbf81c8f8",
                 "reference": "6ea8dd08867a2a42619d65c3deb2c0fcbf81c8f8",
->>>>>>> 5033d6432f (remove lines not worked)
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.5"
             },
             "require-dev": {
-<<<<<<< HEAD
-                "symfony/phpunit-bridge": "^4.4 || ^5.1"
-=======
                 "bamarni/composer-bin-plugin": "^1.8.2",
                 "phpunit/phpunit": "^8.5.39 || ^9.6.20"
->>>>>>> 5033d6432f (remove lines not worked)
             },
             "type": "library",
             "extra": {
@@ -3243,13 +3052,10 @@
             "keywords": [
                 "promise"
             ],
-<<<<<<< HEAD
-=======
             "support": {
                 "issues": "https://github.com/guzzle/promises/issues",
                 "source": "https://github.com/guzzle/promises/tree/2.0.3"
             },
->>>>>>> 5033d6432f (remove lines not worked)
             "funding": [
                 {
                     "url": "https://github.com/GrahamCampbell",
@@ -3264,22 +3070,6 @@
                     "type": "tidelift"
                 }
             ],
-<<<<<<< HEAD
-            "time": "2022-08-28T14:55:35+00:00"
-        },
-        {
-            "name": "guzzlehttp/psr7",
-            "version": "2.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/psr7.git",
-                "reference": "b635f279edd83fc275f822a1188157ffea568ff6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/b635f279edd83fc275f822a1188157ffea568ff6",
-                "reference": "b635f279edd83fc275f822a1188157ffea568ff6",
-=======
             "time": "2024-07-18T10:29:17+00:00"
         },
         {
@@ -3294,7 +3084,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/guzzle/psr7/zipball/a70f5c95fb43bc83f07c9c948baa0dc1829bf201",
                 "reference": "a70f5c95fb43bc83f07c9c948baa0dc1829bf201",
->>>>>>> 5033d6432f (remove lines not worked)
                 "shasum": ""
             },
             "require": {
@@ -3308,15 +3097,9 @@
                 "psr/http-message-implementation": "1.0"
             },
             "require-dev": {
-<<<<<<< HEAD
-                "bamarni/composer-bin-plugin": "^1.8.1",
-                "http-interop/http-factory-tests": "^0.9",
-                "phpunit/phpunit": "^8.5.29 || ^9.5.23"
-=======
                 "bamarni/composer-bin-plugin": "^1.8.2",
                 "http-interop/http-factory-tests": "0.9.0",
                 "phpunit/phpunit": "^8.5.39 || ^9.6.20"
->>>>>>> 5033d6432f (remove lines not worked)
             },
             "suggest": {
                 "laminas/laminas-httphandlerrunner": "Emit PSR-7 responses"
@@ -3387,11 +3170,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-<<<<<<< HEAD
-                "source": "https://github.com/guzzle/psr7/tree/2.5.0"
-=======
                 "source": "https://github.com/guzzle/psr7/tree/2.7.0"
->>>>>>> 5033d6432f (remove lines not worked)
             },
             "funding": [
                 {
@@ -3407,11 +3186,7 @@
                     "type": "tidelift"
                 }
             ],
-<<<<<<< HEAD
-            "time": "2023-04-17T16:11:26+00:00"
-=======
             "time": "2024-07-18T11:15:46+00:00"
->>>>>>> 5033d6432f (remove lines not worked)
         },
         {
             "name": "gymadarasz/ace",
@@ -3535,18 +3310,6 @@
         },
         {
             "name": "justinrainbow/json-schema",
-<<<<<<< HEAD
-            "version": "5.2.12",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/justinrainbow/json-schema.git",
-                "reference": "ad87d5a5ca981228e0e205c2bc7dfb8e24559b60"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/ad87d5a5ca981228e0e205c2bc7dfb8e24559b60",
-                "reference": "ad87d5a5ca981228e0e205c2bc7dfb8e24559b60",
-=======
             "version": "5.3.0",
             "source": {
                 "type": "git",
@@ -3557,7 +3320,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/jsonrainbow/json-schema/zipball/feb2ca6dd1cebdaf1ed60a4c8de2e53ce11c4fd8",
                 "reference": "feb2ca6dd1cebdaf1ed60a4c8de2e53ce11c4fd8",
->>>>>>> 5033d6432f (remove lines not worked)
                 "shasum": ""
             },
             "require": {
@@ -3606,40 +3368,6 @@
                 "schema"
             ],
             "support": {
-<<<<<<< HEAD
-                "issues": "https://github.com/justinrainbow/json-schema/issues",
-                "source": "https://github.com/justinrainbow/json-schema/tree/5.2.12"
-            },
-            "time": "2022-04-13T08:02:27+00:00"
-        },
-        {
-            "name": "lcobucci/clock",
-            "version": "2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/lcobucci/clock.git",
-                "reference": "353d83fe2e6ae95745b16b3d911813df6a05bfb3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/lcobucci/clock/zipball/353d83fe2e6ae95745b16b3d911813df6a05bfb3",
-                "reference": "353d83fe2e6ae95745b16b3d911813df6a05bfb3",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4 || ^8.0"
-            },
-            "require-dev": {
-                "infection/infection": "^0.17",
-                "lcobucci/coding-standard": "^6.0",
-                "phpstan/extension-installer": "^1.0",
-                "phpstan/phpstan": "^0.12",
-                "phpstan/phpstan-deprecation-rules": "^0.12",
-                "phpstan/phpstan-phpunit": "^0.12",
-                "phpstan/phpstan-strict-rules": "^0.12",
-                "phpunit/php-code-coverage": "9.1.4",
-                "phpunit/phpunit": "9.3.7"
-=======
                 "issues": "https://github.com/jsonrainbow/json-schema/issues",
                 "source": "https://github.com/jsonrainbow/json-schema/tree/5.3.0"
             },
@@ -3738,7 +3466,6 @@
                 "phpstan/phpstan-phpunit": "^1.3.13",
                 "phpstan/phpstan-strict-rules": "^1.5.1",
                 "phpunit/phpunit": "^11.3.6"
->>>>>>> 5033d6432f (remove lines not worked)
             },
             "type": "library",
             "autoload": {

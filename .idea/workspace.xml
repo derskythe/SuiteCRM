@@ -22,28 +22,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5458983-32e4-451f-b1cd-a0a63e0f2723" name="Changes" comment="feat: Add DatabasePDOManager and update .gitignore&#10;&#10;Introduces DatabasePDOManager class for managing PDO operations. &#10;* Implements singleton pattern and provides methods for database interactions. &#10;* Updates .gitignore with additional cache, log, and build directories.&#10;* Ensures better organization and efficiency in project management.">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/194d6ef2-6c15-4a2b-b4a5-70f03a353cbb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/194d6ef2-6c15-4a2b-b4a5-70f03a353cbb.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/backend/Install/Resources/install-prechecks.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/core/backend/Install/Resources/install-prechecks.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/legacy/data/SugarBean.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/legacy/data/SugarBean.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/legacy/include/MVC/SugarApplication.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/legacy/include/MVC/SugarApplication.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/legacy/include/OutboundEmail/OutboundEmail.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/legacy/include/OutboundEmail/OutboundEmail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/legacy/include/database/DatabasePDOManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/legacy/include/database/DatabasePDOManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/legacy/include/utils.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/legacy/include/utils.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/legacy/modules/Administration/Administration.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/legacy/modules/Administration/Administration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/legacy/modules/Administration/Save.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/legacy/modules/Administration/Save.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/legacy/modules/Calls/Call.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/legacy/modules/Calls/Call.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/legacy/modules/Cases/Case.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/legacy/modules/Cases/Case.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/legacy/modules/Configurator/views/view.sugarpdfsettings.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/legacy/modules/Configurator/views/view.sugarpdfsettings.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/legacy/modules/Contacts/Contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/legacy/modules/Contacts/Contact.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/legacy/modules/Emails/EmailUIAjax.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/legacy/modules/Emails/EmailUIAjax.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/legacy/modules/Meetings/Meeting.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/legacy/modules/Meetings/Meeting.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/legacy/modules/Opportunities/Opportunity.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/legacy/modules/Opportunities/Opportunity.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/legacy/modules/Project/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/legacy/modules/Project/Project.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/legacy/modules/ProspectLists/ProspectList.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/legacy/modules/ProspectLists/ProspectList.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/legacy/modules/Users/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/legacy/modules/Users/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/legacy/tests/unit/phpunit/modules/Administration/AdministrationTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/legacy/tests/unit/phpunit/modules/Administration/AdministrationTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php_version.php" beforeDir="false" afterPath="$PROJECT_DIR$/php_version.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +39,6 @@
   <component name="ChangesViewManager" show_ignored="true" />
   <component name="ComposerConfigs">
     <option name="configs">
-      <option value="$PROJECT_DIR$/public/legacy/composer.json" />
       <option value="$PROJECT_DIR$/public/legacy/include/social/facebook/facebook_sdk/composer.json" />
     </option>
   </component>
@@ -96,7 +81,7 @@
     <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="try-to-log" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -116,12 +101,16 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="try-to-remove" />
-                    <option name="lastUsedInstant" value="1729100798" />
+                    <option name="branchName" value="fix-legacy" />
+                    <option name="lastUsedInstant" value="1729259837" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="master" />
-                    <option name="lastUsedInstant" value="1728474193" />
+                    <option name="lastUsedInstant" value="1729259754" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="try-to-remove" />
+                    <option name="lastUsedInstant" value="1729259653" />
                   </RecentBranch>
                 </list>
               </option>
@@ -132,12 +121,12 @@
       </RecentBranches>
     </option>
   </component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/salesagility/SuiteCRM-Core.git&quot;,
-    &quot;accountId&quot;: &quot;091bf2c7-9cfb-4bbf-8f35-fbfd89334711&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/derskythe/SuiteCRM.git",
+    "accountId": "5dfec84c-8160-4820-a2fe-63da828c0f97"
   }
-}</component>
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/.dockerignore" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/.env" root0="FORCE_HIGHLIGHTING" />
@@ -159,9 +148,6 @@
   </component>
   <component name="PHPCodeSnifferProjectConfiguration">
     <option name="selectedConfigurationId" value="DEFAULT_INTERPRETER" />
-  </component>
-  <component name="PackageJsonUpdateNotifier">
-    <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpWebServerValidation" path_to_validation_script="$PROJECT_DIR$" selected_validation_type="LOCAL" web_path_to_validation_script="http://127.0.0.1/" />
@@ -460,7 +446,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "credentialsType com.jetbrains.php.remote.interpreter.ui.PhpCreateRemoteSdkForm": "Docker",
     "credentialsType com.jetbrains.php.remote.interpreter.ui.PhpInplaceEditRemoteSdkForm": "Docker",
-    "git-widget-placeholder": "try-to-remove",
+    "git-widget-placeholder": "fix-legacy",
     "javascript.karma.karma_node_package_dir": "/home/skif/Projects/SuiteCRM-Core/node_modules/@angular/cli",
     "javascript.nodejs.core.library.configured.version": "20.18.0",
     "javascript.nodejs.core.library.typings.version": "20.16.11",
@@ -974,12 +960,6 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-    <option name="additionalRoots">
-      <list>
-        <option value="$PROJECT_DIR$/dist/core" />
-        <option value="$PROJECT_DIR$/dist/common" />
-      </list>
-    </option>
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ID_ORDER">

@@ -19,22 +19,16 @@
   "config": {
     "vendor-dir": "vendor",
     "platform": {
-<<<<<<< HEAD
-      "php": "7.4.0"
-=======
       "php": "8.2"
->>>>>>> 5033d6432f (remove lines not worked)
     },
     "optimize-autoloader": true,
     "sort-packages": true,
     "allow-plugins": {
-<<<<<<< HEAD
       "wikimedia/composer-merge-plugin": true
     }
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
-=======
       "php-http/discovery": true,
       "symfony/flex": true,
       "symfony/runtime": true,
@@ -43,23 +37,17 @@
   },
   "minimum-stability": "stable",
   "prefer-stable": false,
->>>>>>> 2dc3d17063 (fix: Taken from develop branch)
   "suggest": {
     "ext-imap": "Needed for emails module"
   },
   "require": {
-<<<<<<< HEAD
-    "php": ">=7.4.0",
-=======
     "php": ">=8.2",
     "ext-ctype": "*",
->>>>>>> 5033d6432f (remove lines not worked)
     "ext-curl": "*",
     "ext-gd": "*",
     "ext-json": "*",
     "ext-openssl": "*",
     "ext-zip": "*",
-<<<<<<< HEAD
     "consolidation/robo": "^3.0",
     "elasticsearch/elasticsearch": "^7.13",
     "ezyang/htmlpurifier": "^4.10",
@@ -95,10 +83,6 @@
     "zf1/zend-loader": "^1.12",
     "zf1/zend-oauth": "^1.12",
     "zf1/zend-registry": "^1.12",
-<<<<<<< HEAD
-    "zf1/zend-search-lucene": "^1.12"
-=======
-=======
     "api-platform/core": "^3.4",
     "composer/package-versions-deprecated": "1.11.99.3",
     "doctrine/doctrine-bundle": "^2.13",
@@ -173,31 +157,10 @@
     "webonyx/graphql-php": "^15.14",
     "wikimedia/composer-merge-plugin": "^2.1",
     "zbateson/mail-mime-parser": "^2.4",
->>>>>>> 31cdc1c377 (chore(deps): Update composer and package dependencies)
     "ext-mysqli": "*"
->>>>>>> a8dcced530 (feat: enhance logging and Docker configuration)
   },
   "require-dev": {
     "browserstack/browserstack-local": "^1.1",
-<<<<<<< HEAD
-    "codeception/codeception": "^4.1",
-    "codeception/module-asserts": "^1.3",
-    "codeception/module-filesystem": "^1.0",
-    "codeception/module-phpbrowser": "^1.0",
-    "codeception/module-rest": "^1.3",
-    "codeception/module-webdriver": "^1.2",
-    "fakerphp/faker": "^1.14",
-    "filp/whoops": "^2.3",
-    "flow/jsonpath": "^0.4",
-    "friendsofphp/php-cs-fixer": "^2.15",
-    "jeroendesloovere/vcard": "^1.7",
-    "mikey179/vfsstream": "1.6.*",
-    "mockery/mockery": "^1.1.0",
-    "phpstan/phpstan": "^1.10",
-    "phpunit/phpunit": "^9.5",
-    "rector/rector": "^0.16.0",
-    "scssphp/scssphp": "^1.5"
-=======
     "codeception/codeception": "^5.1",
     "codeception/module-asserts": "^3.0",
     "codeception/module-filesystem": "^3.0",
@@ -222,7 +185,6 @@
     "symfony/maker-bundle": "^1.61",
     "symfony/stopwatch": "6.4.*",
     "symfony/web-profiler-bundle": "6.4.*"
->>>>>>> 31cdc1c377 (chore(deps): Update composer and package dependencies)
   },
   "autoload": {
     "files": [
