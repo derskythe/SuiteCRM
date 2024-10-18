@@ -68,6 +68,7 @@ if (empty($_REQUEST['track'])) {
 } else {
     $track = $_REQUEST['track'];
 }
+global $sugar_config, $db;
 $track = $db->quote($track);
 
 if (preg_match('/^[0-9A-Za-z\-]*$/', (string) $track)) {
