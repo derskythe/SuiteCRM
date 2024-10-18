@@ -620,8 +620,13 @@ class SugarApplication
     public function startSession()
     {
 <<<<<<< HEAD:include/MVC/SugarApplication.php
+<<<<<<< HEAD:include/MVC/SugarApplication.php
         $sessionIdCookie = isset($_COOKIE['PHPSESSID']) ? $_COOKIE['PHPSESSID'] : null;
 =======
+=======
+        require_once(__DIR__.'/../utils.php');
+
+>>>>>>> 67f50a1350 (chore: update database collation settings):public/legacy/include/MVC/SugarApplication.php
         $sessionIdCookie = $_COOKIE[session_name()] ?? null;
 >>>>>>> a4497da690 (refactor: correct spacing and formatting issues):public/legacy/include/MVC/SugarApplication.php
         if (isset($_REQUEST['MSID'])) {
