@@ -274,9 +274,29 @@
       <path value="$PROJECT_DIR$/public/legacy/vendor/gymadarasz/imagesloaded" />
       <path value="$PROJECT_DIR$/public/legacy/vendor/gymadarasz/ace" />
       <path value="$PROJECT_DIR$/public/legacy/vendor/tinymce/tinymce" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php81" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-iconv" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/vendor/nikic/fast-route" />
+      <path value="$PROJECT_DIR$/vendor/zf1/zend-registry" />
+      <path value="$PROJECT_DIR$/vendor/zf1/zend-loader" />
+      <path value="$PROJECT_DIR$/vendor/zf1/zend-validate" />
+      <path value="$PROJECT_DIR$/vendor/zf1/zend-http" />
+      <path value="$PROJECT_DIR$/vendor/zf1/zend-crypt" />
+      <path value="$PROJECT_DIR$/vendor/zf1/zend-oauth" />
+      <path value="$PROJECT_DIR$/vendor/zf1/zend-locale" />
+      <path value="$PROJECT_DIR$/vendor/zf1/zend-version" />
+      <path value="$PROJECT_DIR$/vendor/zf1/zend-xml" />
+      <path value="$PROJECT_DIR$/vendor/zf1/zend-mime" />
+      <path value="$PROJECT_DIR$/vendor/slim/slim" />
+      <path value="$PROJECT_DIR$/vendor/zf1/zend-gdata" />
+      <path value="$PROJECT_DIR$/vendor/zf1/zend-cache" />
+      <path value="$PROJECT_DIR$/vendor/zf1/zend-exception" />
+      <path value="$PROJECT_DIR$/vendor/zf1/zend-uri" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="7.4" />
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />
   <component name="PhpStanOptionsConfiguration">
     <option name="transferred" value="true" />
   </component>

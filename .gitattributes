@@ -178,19 +178,33 @@ Dockerfile text eol=lf
 # Directories to exclude when creating an archive
 /tests export-ignore
 /build export-ignore
+/node_modules export-ignore
+/cache/dev
+/cache/test
+/logs/dev
+/logs/tests
 /.github export-ignore
+/.gitlab export-ignore
+/.metadata export-ignore
+/.settings export-ignore
+
 
 # Files to exclude when creating an archive
 /.gitmodules export-ignore
 /.gitignore export-ignore
 /php_cs.xml export-ignore
+/.phpcs.xml export-ignore
+/.php_cs.dist export-ignore
 /codacy.yml export-ignore
 /codeception.dist.yml export-ignore
 /.codecov.yml export-ignore
-/.php_cs.dist export-ignore
 /.travis.yml export-ignore
 travis.php.ini export-ignore
-/.phpcs.xml export-ignore
-/.gitattributes export-ignore
-/custom/modules/unified_search_modules_display.php export-ignore
 /.env.dist export-ignore
+/.env.test export-ignore
+/.env.local export-ignore
+/.env.local.php export-ignore
+/.project export-ignore
+/.proxy.conf.local.js export-ignore
+/.proxy.conf.local.json export-ignore
+
