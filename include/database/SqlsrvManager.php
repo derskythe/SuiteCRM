@@ -103,10 +103,10 @@ class SqlsrvManager extends MssqlManager
 {
     public $dbName = 'SQL Server';
     public $variant = 'sqlsrv';
-    public $priority = 10;
-    public $label = 'LBL_MSSQL_SQLSRV';
+    public int $priority = 10;
+    public string $label = 'LBL_MSSQL_SQLSRV';
 
-    protected $capabilities = array(
+    protected array $capabilities = array(
         "affected_rows" => true,
         'fulltext' => true,
         'limit_subquery' => true,
@@ -114,7 +114,7 @@ class SqlsrvManager extends MssqlManager
         "create_db" => true,
     );
 
-    protected $type_map = array(
+    protected array $type_map = array(
         'int' => 'int',
         'double' => 'float',
         'float' => 'float',
@@ -214,7 +214,7 @@ class SqlsrvManager extends MssqlManager
     /**
      * @see DBManager::query()
      */
-    public function query($sql, $dieOnError = false, $msg = '', $suppress = false, $keepResult = false)
+    public function query(string $sql, bool $dieOnError = false, string $msg = '', bool $suppress = false, bool $keepResult = false)
     {
         if (is_array($sql)) {
             return $this->queryArray($sql, $dieOnError, $msg, $suppress);
@@ -486,24 +486,24 @@ EOSQL;
      * @see DBManager::changeColumnSQL()
      * @see MssqlHelper::changeColumnSQL()
      */
-    protected function changeColumnSQL($tablename, $fieldDefs, $action, $ignoreRequired = false)
+    protected function changeColumnSQL($table_name, array $field_definitions, string $action, $ignoreRequired = false)
     {
         $sql = '';
-        if ($action == 'drop' && $this->doesTableHaveAFulltextIndexDefined($tablename)) {
-            $sql .= "DROP FULLTEXT INDEX ON {$tablename}";
+        if ($action == 'drop' && $this->doesTableHaveAFulltextIndexDefined($table_name)) {
+            $sql .= "DROP FULLTEXT INDEX ON {$table_name}";
         }
 
-        $sql .= parent::changeColumnSQL($tablename, $fieldDefs, $action, $ignoreRequired);
+        $sql .= parent::changeColumnSQL($table_name, $field_definitions, $action, $ignoreRequired);
 
         return $sql;
     }
 
     /**
      * Truncate table
-     * @param  $name
+     * @param string $name
      * @return string
      */
-    public function truncateTableSQL($name)
+    public function truncateTableSQL(string $name)
     {
         return "TRUNCATE TABLE $name";
     }

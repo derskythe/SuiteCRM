@@ -105,9 +105,9 @@ class MssqlManager extends DBManager
     public $dbType = 'mssql';
     public $dbName = 'MsSQL';
     public $variant = 'mssql';
-    public $label = 'LBL_MSSQL';
+    public string $label = 'LBL_MSSQL';
 
-    protected $capabilities = array(
+    protected array $capabilities = array(
         'affected_rows' => true,
         'select_rows' => true,
         'fulltext' => true,
@@ -120,14 +120,14 @@ class MssqlManager extends DBManager
     /**
      * Maximum length of identifiers
      */
-    protected $maxNameLengths = array(
+    protected array $maxNameLengths = array(
         'table' => 128,
         'column' => 128,
         'index' => 128,
         'alias' => 128
     );
 
-    protected $type_map = array(
+    protected array $type_map = array(
         'int' => 'int',
         'double' => 'float',
         'float' => 'float',
@@ -285,7 +285,7 @@ class MssqlManager extends DBManager
     /**
      * @see DBManager::query()
      */
-    public function query($sql, $dieOnError = false, $msg = '', $suppress = false, $keepResult = false)
+    public function query(string $sql, bool $dieOnError = false, string $msg = '', bool $suppress = false, bool $keepResult = false)
     {
         if (is_array($sql)) {
             return $this->queryArray($sql, $dieOnError, $msg, $suppress);
@@ -964,7 +964,7 @@ class MssqlManager extends DBManager
     /**
      * @see DBManager::quote()
      */
-    public function quote($string)
+    public function quote(string $string)
     {
         if (is_array($string)) {
             return $this->arrayQuote($string);
@@ -984,13 +984,13 @@ class MssqlManager extends DBManager
     /**
      * @see DBManager::tableExists()
      */
-    public function tableExists($tableName)
+    public function tableExists($table_name)
     {
-        $GLOBALS['log']->info("tableExists: $tableName");
+        $GLOBALS['log']->info("tableExists: $table_name");
 
         $this->checkConnection();
         $result = $this->getOne(
-            "SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE' AND TABLE_NAME=" . $this->quoted($tableName)
+            "SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE' AND TABLE_NAME=" . $this->quoted($table_name)
         );
 
         return !empty($result);
@@ -1001,7 +1001,7 @@ class MssqlManager extends DBManager
      * @param string $like
      * @return array
      */
-    public function tablesLike($like)
+    public function tablesLike(string $like)
     {
         if ($this->getDatabase()) {
             $tables = array();
@@ -1180,7 +1180,7 @@ class MssqlManager extends DBManager
     /**
      * @see DBManager::fromConvert()
      */
-    public function fromConvert($string, $type)
+    public function fromConvert(string $string, string $type)
     {
         switch ($type) {
             case 'datetimecombo':
@@ -1198,18 +1198,18 @@ class MssqlManager extends DBManager
     /**
      * @see DBManager::createTableSQLParams()
      */
-    public function createTableSQLParams($tablename, $fieldDefs, $indices)
+    public function createTableSQLParams($table_name, array $field_definitions, array $indices)
     {
-        if (empty($tablename) || empty($fieldDefs)) {
+        if (empty($table_name) || empty($field_definitions)) {
             return '';
         }
 
-        $columns = $this->columnSQLRep($fieldDefs, false, $tablename);
+        $columns = $this->columnSQLRep($field_definitions, false, $table_name);
         if (empty($columns)) {
             return '';
         }
 
-        return "CREATE TABLE $tablename ($columns)";
+        return "CREATE TABLE $table_name ($columns)";
     }
 
     /**
@@ -1217,7 +1217,7 @@ class MssqlManager extends DBManager
      * @param string $type
      * @return bool
      */
-    public function isTextType($type)
+    public function isTextType(string $type)
     {
         $type = strtolower($type);
         if (!isset($this->type_map[$type])) {
@@ -1249,14 +1249,14 @@ class MssqlManager extends DBManager
     }
 
     /**
-     * @param string $tablename
+     * @param string $table_name
      * @param string $column
-     * @param string $newname
+     * @param string $new_name
      * @return string
      */
-    public function renameColumnSQL($tablename, $column, $newname)
+    public function renameColumnSQL($table_name, $column, $new_name)
     {
-        return "SP_RENAME '$tablename.$column', '$newname', 'COLUMN'";
+        return "SP_RENAME '$table_name.$column', '$new_name', 'COLUMN'";
     }
 
     /**
@@ -1303,50 +1303,50 @@ class MssqlManager extends DBManager
      * MSSQL uses a different syntax than MySQL for table altering that is
      * not quite as simplistic to implement...
      */
-    protected function changeColumnSQL($tablename, $fieldDefs, $action, $ignoreRequired = false)
+    protected function changeColumnSQL($table_name, array $field_definitions, string $action, $ignoreRequired = false)
     {
         $sql = $sql2 = '';
-        $constraints = $this->getFieldDefaultConstraintName($tablename);
+        $constraints = $this->getFieldDefaultConstraintName($table_name);
         $columns = array();
-        if ($this->isFieldArray($fieldDefs)) {
-            foreach ($fieldDefs as $def) {
+        if ($this->isFieldArray($field_definitions)) {
+            foreach ($field_definitions as $def) {
                 //if the column is being modified drop the default value
                 //constraint if it exists. alterSQLRep will add the constraint back
                 if (!empty($constraints[$def['name']])) {
-                    $sql .= ' ALTER TABLE ' . $tablename . ' DROP CONSTRAINT ' . $constraints[$def['name']];
+                    $sql .= ' ALTER TABLE ' . $table_name . ' DROP CONSTRAINT ' . $constraints[$def['name']];
                 }
                 //check to see if we need to drop related indexes before the alter
-                $indices = $this->get_indices($tablename);
+                $indices = $this->get_indices($table_name);
                 foreach ($indices as $index) {
                     if (in_array($def['name'], $index['fields'])) {
-                        $sql .= ' ' . $this->add_drop_constraint($tablename, $index, true) . ' ';
-                        $sql2 .= ' ' . $this->add_drop_constraint($tablename, $index, false) . ' ';
+                        $sql .= ' ' . $this->addDropConstraint($table_name, $index, true) . ' ';
+                        $sql2 .= ' ' . $this->addDropConstraint($table_name, $index, false) . ' ';
                     }
                 }
 
-                $columns[] = $this->alterSQLRep($action, $def, $ignoreRequired, $tablename);
+                $columns[] = $this->alterSQLRep($action, $def, $ignoreRequired, $table_name);
             }
         } else {
             //if the column is being modified drop the default value
             //constraint if it exists. alterSQLRep will add the constraint back
-            if (!empty($constraints[$fieldDefs['name']])) {
-                $sql .= ' ALTER TABLE ' . $tablename . ' DROP CONSTRAINT ' . $constraints[$fieldDefs['name']];
+            if (!empty($constraints[$field_definitions['name']])) {
+                $sql .= ' ALTER TABLE ' . $table_name . ' DROP CONSTRAINT ' . $constraints[$field_definitions['name']];
             }
             //check to see if we need to drop related indexes before the alter
-            $indices = $this->get_indices($tablename);
+            $indices = $this->get_indices($table_name);
             foreach ($indices as $index) {
-                if (in_array($fieldDefs['name'], $index['fields'])) {
-                    $sql .= ' ' . $this->add_drop_constraint($tablename, $index, true) . ' ';
-                    $sql2 .= ' ' . $this->add_drop_constraint($tablename, $index, false) . ' ';
+                if (in_array($field_definitions['name'], $index['fields'])) {
+                    $sql .= ' ' . $this->addDropConstraint($table_name, $index, true) . ' ';
+                    $sql2 .= ' ' . $this->addDropConstraint($table_name, $index, false) . ' ';
                 }
             }
 
 
-            $columns[] = $this->alterSQLRep($action, $fieldDefs, $ignoreRequired, $tablename);
+            $columns[] = $this->alterSQLRep($action, $field_definitions, $ignoreRequired, $table_name);
         }
 
         $columns = implode(', ', $columns);
-        $sql .= " ALTER TABLE $tablename $columns " . $sql2;
+        $sql .= " ALTER TABLE $table_name $columns " . $sql2;
 
         return $sql;
     }
@@ -1377,7 +1377,7 @@ class MssqlManager extends DBManager
     /**
      * @see DBManager::getAutoIncrement()
      */
-    public function getAutoIncrement($table, $field_name)
+    public function getAutoIncrement(string $table, string $field_name)
     {
         $result = $this->getOne("select IDENT_CURRENT('$table') + IDENT_INCR ( '$table' ) as 'Auto_increment'");
 
@@ -1488,9 +1488,9 @@ EOSQL;
     }
 
     /**
-     * @see DBManager::add_drop_constraint()
+     * @see DBManager::addDropConstraint()
      */
-    public function add_drop_constraint($table, $definition, $drop = false)
+    public function addDropConstraint($table, array $definition, $drop = false)
     {
         $type = $definition['type'];
         $fields = is_array($definition['fields']) ? implode(',', $definition['fields']) : $definition['fields'];
@@ -1573,7 +1573,7 @@ EOSQL;
      *
      * @return bool
      */
-    public function full_text_indexing_installed()
+    public function isFullTextIndexingInstalled()
     {
         $ftsChckRes = $this->getOne("SELECT FULLTEXTSERVICEPROPERTY('IsFulltextInstalled') as fts");
 
@@ -1587,7 +1587,7 @@ EOSQL;
     {
         // check to see if we already have install setting in session
         if (!isset($_SESSION['IsFulltextInstalled'])) {
-            $_SESSION['IsFulltextInstalled'] = $this->full_text_indexing_installed();
+            $_SESSION['IsFulltextInstalled'] = $this->isFullTextIndexingInstalled();
         }
 
         // check to see if FTS Indexing service is installed
@@ -1683,74 +1683,74 @@ EOQ;
     /**
      * @see DBManager::massageFieldDef()
      */
-    public function massageFieldDef(&$fieldDef, $tablename)
+    public function massageFieldDef(array &$field_definition, string $table_name)
     {
-        parent::massageFieldDef($fieldDef, $tablename);
+        parent::massageFieldDef($field_definition, $table_name);
 
-        if ($fieldDef['type'] == 'int') {
-            $fieldDef['len'] = '4';
+        if ($field_definition['type'] == 'int') {
+            $field_definition['len'] = '4';
         }
 
-        if (empty($fieldDef['len'])) {
-            switch ($fieldDef['type']) {
+        if (empty($field_definition['len'])) {
+            switch ($field_definition['type']) {
                 case 'bit':
                 case 'bool':
-                    $fieldDef['len'] = '1';
+                $field_definition['len'] = '1';
                     break;
                 case 'smallint':
-                    $fieldDef['len'] = '2';
+                    $field_definition['len'] = '2';
                     break;
                 case 'float':
-                    $fieldDef['len'] = '8';
+                    $field_definition['len'] = '8';
                     break;
                 case 'varchar':
                 case 'nvarchar':
-                    $fieldDef['len'] = $this->isTextType($fieldDef['dbType']) ? 'max' : '255';
+                $field_definition['len'] = $this->isTextType($field_definition['dbType']) ? 'max' : '255';
                     break;
                 case 'image':
-                    $fieldDef['len'] = '2147483647';
+                    $field_definition['len'] = '2147483647';
                     break;
                 case 'ntext':
-                    $fieldDef['len'] = '2147483646';
+                    $field_definition['len'] = '2147483646';
                     break;   // Note: this is from legacy code, don't know if this is correct
             }
         }
-        if ($fieldDef['type'] == 'decimal'
-            && empty($fieldDef['precision'])
-            && !strpos((string) $fieldDef['len'], ',')
+        if ($field_definition['type'] == 'decimal'
+            && empty($field_definition['precision'])
+            && !strpos((string)$field_definition['len'], ',')
         ) {
-            $fieldDef['len'] .= ',0'; // Adding 0 precision if it is not specified
+            $field_definition['len'] .= ',0'; // Adding 0 precision if it is not specified
         }
 
-        if (empty($fieldDef['default'])
-            && in_array($fieldDef['type'], array('bit', 'bool'))
+        if (empty($field_definition['default'])
+            && in_array($field_definition['type'], array('bit', 'bool'))
         ) {
-            $fieldDef['default'] = '0';
+            $field_definition['default'] = '0';
         }
-        if (isset($fieldDef['required']) && $fieldDef['required'] && !isset($fieldDef['default'])) {
-            $fieldDef['default'] = '';
+        if (isset($field_definition['required']) && $field_definition['required'] && !isset($field_definition['default'])) {
+            $field_definition['default'] = '';
         }
     }
 
     /**
      * @see DBManager::oneColumnSQLRep()
      */
-    protected function oneColumnSQLRep($fieldDef, $ignoreRequired = false, $table = '', $return_as_array = false)
+    protected function oneColumnSQLRep(array $field_definition, bool $ignore_required = false, string $table = '', bool $return_as_array = false)
     {
         //Bug 25814
-        if (isset($fieldDef['name'])) {
-            $colType = $this->getFieldType($fieldDef);
-            if (stristr($this->getFieldType($fieldDef), 'decimal') && isset($fieldDef['len'])) {
-                $fieldDef['len'] = min($fieldDef['len'], 38);
+        if (isset($field_definition['name'])) {
+            $colType = $this->getFieldType($field_definition);
+            if (stristr($this->getFieldType($field_definition), 'decimal') && isset($field_definition['len'])) {
+                $field_definition['len'] = min($field_definition['len'], 38);
             }
             //bug: 39690 float(8) is interpreted as real and this generates a diff when doing repair
-            if (stristr($colType, 'float') && isset($fieldDef['len']) && $fieldDef['len'] == 8) {
-                unset($fieldDef['len']);
+            if (stristr($colType, 'float') && isset($field_definition['len']) && $field_definition['len'] == 8) {
+                unset($field_definition['len']);
             }
         }
 
         // always return as array for post-processing
-        $ref = parent::oneColumnSQLRep($fieldDef, $ignoreRequired, $table, true);
+        $ref = parent::oneColumnSQLRep($field_definition, $ignore_required, $table, true);
 
         // Quote the column name (fixes problems with names like 'open', as found in aobh_businesshours)
         $ref['name'] = $this->quoteIdentifier($ref['name']);
@@ -1774,7 +1774,7 @@ EOQ;
      * @param array $changes changes
      * @return bool
      */
-    public function save_audit_records(SugarBean $bean, $changes)
+    public function save_audit_records(SugarBean $bean, array $changes)
     {
         //Bug 25078 fixed by Martin Hu: sqlserver haven't 'date' type, trim extra "00:00:00"
         if ($changes['data_type'] == 'date') {
@@ -1974,7 +1974,7 @@ EOQ;
      * @param array $exclude_terms Search terms that have to be not in the result
      * @return string
      */
-    public function getFulltextQuery($field, $terms, $must_terms = array(), $exclude_terms = array())
+    public function getFulltextQuery(string $field, array $terms, $must_terms = array(), $exclude_terms = array())
     {
         $condition = $or_condition = array();
         foreach ($must_terms as $term) {

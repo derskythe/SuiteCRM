@@ -51,15 +51,15 @@ class FreeTDSManager extends MssqlManager
 {
     public $dbName = 'FreeTDS SQL Server';
     public $variant = 'freetds';
-    public $label = 'LBL_MSSQL2';
+    public string $label = 'LBL_MSSQL2';
 
-    protected $capabilities = array(
+    protected array $capabilities = array(
         "affected_rows" => true,
         'fulltext' => true,
         'limit_subquery' => true,
     );
 
-    protected $type_map = array(
+    protected array $type_map = array(
             'int'      => 'int',
             'double'   => 'float',
             'float'    => 'float',
@@ -95,7 +95,7 @@ class FreeTDSManager extends MssqlManager
             'decimal_tpl' => 'decimal(%d, %d)',
     );
 
-    public function query($sql, $dieOnError = false, $msg = '', $suppress = false, $keepResult = false)
+    public function query(string $sql, bool $dieOnError = false, string $msg = '', bool $suppress = false, bool $keepResult = false)
     {
         global $app_strings;
         if (is_array($sql)) {

@@ -102,19 +102,34 @@ class MysqlManager extends DBManager
     /**
      * @see DBManager::$dbType
      */
-    public $dbType = 'mysql';
-    public $variant = 'mysql';
-    public $dbName = 'MySQL';
-    public $label = 'LBL_MYSQL';
+    public string $dbType = 'mysql';
+    /**
+     * @var string
+     */
+    public string $variant = 'mysql';
+    /**
+     * @var string
+     */
+    public string $dbName = 'MySQL';
+    /**
+     * @var string
+     */
+    public string $label = 'LBL_MYSQL';
 
-    protected $maxNameLengths = array(
+    /**
+     * @var array|int[]
+     */
+    protected array $maxNameLengths = array(
         'table' => 64,
         'column' => 64,
         'index' => 64,
         'alias' => 256
     );
 
-    protected $type_map = array(
+    /**
+     * @var array|string[]
+     */
+    protected array $type_map = array(
         'int' => 'int',
         'double' => 'double',
         'float' => 'float',
@@ -151,7 +166,10 @@ class MysqlManager extends DBManager
 
     );
 
-    protected $capabilities = array(
+    /**
+     * @var array|true[]
+     */
+    protected array $capabilities = array(
         "affected_rows" => true,
         "select_rows" => true,
         "inline_keys" => true,
@@ -172,13 +190,13 @@ class MysqlManager extends DBManager
      * @param bool $keepResult True if we want to push this result into the $lastResult array.
      * @return resource result set
      */
-    public function query($sql, $dieOnError = false, $msg = '', $suppress = false, $keepResult = false)
+    public function query(string|array $sql, bool $dieOnError = false, string $msg = '', bool $suppress = false, bool $keepResult = false)
     {
         if (is_array($sql)) {
             return $this->queryArray($sql, $dieOnError, $msg, $suppress);
         }
 
-        parent::countQuery($sql);
+        $this->countQuery($sql);
         $GLOBALS['log']->info('Query:' . $sql);
         $this->checkConnection();
         $this->query_time = microtime(true);
@@ -203,7 +221,7 @@ class MysqlManager extends DBManager
      * @param $result
      * @return int
      */
-    public function getAffectedRowCount($result)
+    public function getAffectedRowCount(mixed $result): int
     {
         return mysql_affected_rows($this->getDatabase());
     }
@@ -217,7 +235,7 @@ class MysqlManager extends DBManager
      * @return int
      * @deprecated
      */
-    public function getRowCount($result)
+    public function getRowCount(mixed $result): int
     {
         return mysql_num_rows($result);
     }
@@ -227,7 +245,7 @@ class MysqlManager extends DBManager
      *
      * Also handles any cleanup needed
      */
-    public function disconnect()
+    public function disconnect(): void
     {
         $GLOBALS['log']->debug('Calling MySQL::disconnect()');
         if (!empty($this->database)) {
@@ -240,13 +258,12 @@ class MysqlManager extends DBManager
     /**
      * @see DBManager::freeDbResult()
      */
-    protected function freeDbResult($dbResult)
+    protected function freeDbResult(mixed $dbResult): void
     {
         if (!empty($dbResult)) {
             mysql_free_result($dbResult);
         }
     }
-
 
     /**
      * @abstract
@@ -255,15 +272,15 @@ class MysqlManager extends DBManager
      * @param string $sql
      * @return bool
      */
-    protected function hasLimit($sql)
+    protected function hasLimit(string $sql): bool
     {
-        return stripos($sql, " limit ") !== false;
+        return stripos($sql, ' limit ') !== false;
     }
 
     /**
      * @see DBManager::limitQuery()
      */
-    public function limitQuery($sql, $start, $count, $dieOnError = false, $msg = '', $execute = true)
+    public function limitQuery(string $sql, int $start, int $count, bool $dieOnError = false, string $msg = '', bool $execute = true)
     {
         $start = (int)$start;
         $count = (int)$count;
@@ -285,11 +302,10 @@ class MysqlManager extends DBManager
         return $this->query($sql, $dieOnError, $msg);
     }
 
-
     /**
      * @see DBManager::checkQuery()
      */
-    protected function checkQuery($sql, $object_name = false)
+    protected function checkQuery(string $sql, string $object_name = ''): bool
     {
         $result = $this->query('EXPLAIN ' . $sql);
         $badQuery = array();
@@ -298,7 +314,7 @@ class MysqlManager extends DBManager
                 continue;
             }
             $badQuery[$row['table']] = '';
-            if (strtoupper($row['type']) == 'ALL') {
+            if (strtoupper($row['type']) === 'ALL') {
                 $badQuery[$row['table']] .= ' Full Table Scan;';
             }
             if (empty($row['key'])) {
@@ -334,10 +350,10 @@ class MysqlManager extends DBManager
     /**
      * @see DBManager::get_columns()
      */
-    public function get_columns($tablename)
+    public function get_columns(string $table_name): array
     {
         //find all unique indexes and primary keys.
-        $result = $this->query("DESCRIBE $tablename");
+        $result = $this->query("DESCRIBE $table_name");
 
         $columns = array();
         while (($row = $this->fetchByAssoc($result)) != null) {
@@ -353,10 +369,10 @@ class MysqlManager extends DBManager
             ) {
                 $columns[$name]['len'] = strtolower($matches[2][0]);
             }
-            if (stristr((string)$row['Extra'], 'auto_increment')) {
+            if (stripos((string)$row['Extra'], 'auto_increment') !== false) {
                 $columns[$name]['auto_increment'] = '1';
             }
-            if ($row['Null'] == 'NO' && !stristr((string)$row['Key'], 'PRI')) {
+            if ($row['Null'] === 'NO' && stripos((string)$row['Key'], 'PRI') === false) {
                 $columns[$name]['required'] = 'true';
             }
             if (!empty($row['Default'])) {
@@ -370,7 +386,7 @@ class MysqlManager extends DBManager
     /**
      * @see DBManager::getFieldsArray()
      */
-    public function getFieldsArray($result, $make_lower_case = false)
+    public function getFieldsArray(mixed $result, bool $make_lower_case = false): array
     {
         $field_array = array();
 
@@ -398,7 +414,7 @@ class MysqlManager extends DBManager
     /**
      * @see DBManager::fetchRow()
      */
-    public function fetchRow($result)
+    public function fetchRow(mixed $result): array
     {
         if (empty($result)) {
             return false;
@@ -410,7 +426,7 @@ class MysqlManager extends DBManager
     /**
      * @see DBManager::getTablesArray()
      */
-    public function getTablesArray()
+    public function getTablesArray(): array
     {
         $this->log->debug('Fetching table list');
 
@@ -433,7 +449,7 @@ class MysqlManager extends DBManager
     /**
      * @see DBManager::version()
      */
-    public function version()
+    public function version(): string
     {
         return $this->getOne("SELECT version() version");
     }
@@ -441,12 +457,12 @@ class MysqlManager extends DBManager
     /**
      * @see DBManager::tableExists()
      */
-    public function tableExists($tableName)
+    public function tableExists(string $table_name): bool
     {
-        $this->log->info("tableExists: $tableName");
+        $this->log->info("tableExists: $table_name");
 
         if ($this->getDatabase()) {
-            $result = $this->query("SHOW TABLES LIKE " . $this->quoted($tableName));
+            $result = $this->query('SHOW TABLES LIKE ' . $this->quoted($table_name));
             if (empty($result)) {
                 return false;
             }
@@ -463,7 +479,7 @@ class MysqlManager extends DBManager
      * @param string $like
      * @return array
      */
-    public function tablesLike($like)
+    public function tablesLike(string $like): array
     {
         if ($this->getDatabase()) {
             $tables = array();
@@ -484,9 +500,9 @@ class MysqlManager extends DBManager
     /**
      * @see DBManager::quote()
      */
-    public function quote($string)
+    public function quote(string $string): string
     {
-        if (is_array($string)) {
+        if ($string === '') {
             return $this->arrayQuote($string);
         }
 
@@ -496,7 +512,7 @@ class MysqlManager extends DBManager
     /**
      * @see DBManager::quoteIdentifier()
      */
-    public function quoteIdentifier($string)
+    public function quoteIdentifier(string $string): string
     {
         return '`' . $string . '`';
     }
@@ -504,7 +520,7 @@ class MysqlManager extends DBManager
     /**
      * @see DBManager::connect()
      */
-    public function connect(array $configOptions = null, $dieOnError = false)
+    public function connect(array $configOptions = null, bool $dieOnError = false): bool
     {
         global $sugar_config;
 
@@ -588,17 +604,17 @@ class MysqlManager extends DBManager
      * For MySQL, we can write the ALTER TABLE statement all in one line, which speeds things
      * up quite a bit. So here, we'll parse the returned SQL into a single ALTER TABLE command.
      */
-    public function repairTableParams($tablename, $fielddefs, $indices, $execute = true, $engine = null)
+    public function repairTableParams(string $table_name, array $fielddefs, array $indices, bool $execute = true, string $engine = null): string
     {
-        $sql = parent::repairTableParams($tablename, $fielddefs, $indices, false, $engine);
+        $sql = parent::repairTableParams($table_name, $fielddefs, $indices, false, $engine);
 
-        if ($sql == '') {
+        if ($sql === '') {
             return '';
         }
 
-        if (stristr($sql, 'create table')) {
+        if (stripos($sql, 'create table') !== false) {
             if ($execute) {
-                $msg = "Error creating table: " . $tablename . ":";
+                $msg = "Error creating table: " . $table_name . ":";
                 $this->query($sql, true, $msg);
             }
 
@@ -613,13 +629,12 @@ class MysqlManager extends DBManager
 
         // now, we should only have alter table statements
         // let's replace the 'alter table name' part with a comma
-        $sql = preg_replace("!alter table $tablename!is", ', ', $sql);
+        $sql = preg_replace("!alter table $table_name!is", ', ', $sql);
 
         // re-add it at the beginning
         $sql = substr_replace($sql, '', strpos($sql, ','), 1);
-        $sql = str_replace(";", "", $sql);
-        $sql = str_replace("\n", "", $sql);
-        $sql = "ALTER TABLE $tablename $sql";
+        $sql = str_replace([';', "\n"], '', $sql);
+        $sql = "ALTER TABLE $table_name $sql";
 
         if ($execute) {
             $this->query($sql, 'Error with MySQL repair table');
@@ -634,7 +649,7 @@ class MysqlManager extends DBManager
     /**
      * @see DBManager::convert()
      */
-    public function convert($string, $type, array $additional_parameters = array())
+    public function convert(string $string, string $type, array $additional_parameters = array()): string
     {
         $all_parameters = $additional_parameters;
         if (is_array($string)) {
@@ -652,17 +667,17 @@ class MysqlManager extends DBManager
             case 'date_format':
                 if (empty($additional_parameters)) {
                     return "DATE_FORMAT($string,'%Y-%m-%d')";
-                } else {
-                    $format = $additional_parameters[0];
-                    if ($format[0] != "'") {
-                        $format = $this->quoted($format);
-                    }
-
-                    return "DATE_FORMAT($string,$format)";
                 }
+
+                $format = $additional_parameters[0];
+                if ($format[0] !== '\'') {
+                    $format = $this->quoted($format);
+                }
+
+                return "DATE_FORMAT($string,$format)";
             // no break
             case 'ifnull':
-                if (empty($additional_parameters) && !strstr($all_strings, ",")) {
+                if (empty($additional_parameters) && strpos($all_strings, ",") === false) {
                     $all_strings .= ",''";
                 }
 
@@ -697,7 +712,7 @@ class MysqlManager extends DBManager
      * (non-PHPdoc)
      * @see DBManager::fromConvert()
      */
-    public function fromConvert($string, $type)
+    public function fromConvert(string $string, string $type): string
     {
         return $string;
     }
@@ -708,7 +723,7 @@ class MysqlManager extends DBManager
      * @param object $bean SugarBean instance
      * @return string
      */
-    protected function getEngine($bean)
+    protected function getEngine(SugarBean $bean): ?string
     {
         global $dictionary;
         $engine = null;
@@ -725,15 +740,15 @@ class MysqlManager extends DBManager
      * @param string $engine
      * @return bool
      */
-    protected function isEngineEnabled($engine)
+    protected function isEngineEnabled(string $engine): bool
     {
-        if (!is_string($engine)) {
+        if ($engine === '') {
             return false;
         }
 
         $engine = strtoupper($engine);
 
-        $r = $this->query("SHOW ENGINES");
+        $r = $this->query('SHOW ENGINES');
 
         while ($row = $this->fetchByAssoc($r)) {
             if (strtoupper($row['Engine']) == $engine) {
@@ -747,35 +762,34 @@ class MysqlManager extends DBManager
     /**
      * @see DBManager::createTableSQL()
      */
-    public function createTableSQL(SugarBean $bean)
+    public function createTableSQL(SugarBean $bean): string
     {
-        $tablename = $bean->getTableName();
+        $table_name = $bean->getTableName();
         $fieldDefs = $bean->getFieldDefinitions();
         $indices = $bean->getIndices();
         $engine = $this->getEngine($bean);
 
-        return $this->createTableSQLParams($tablename, $fieldDefs, $indices, $engine);
+        return $this->createTableSQLParams($table_name, $fieldDefs, $indices, $engine);
     }
 
     /**
      * Generates sql for create table statement for a bean.
      *
-     * @param string $tablename
-     * @param array $fieldDefs
+     * @param string $table_name
+     * @param array $field_definitions
      * @param array $indices
-     * @param string $engine optional, MySQL engine to use
      * @return string SQL Create Table statement
      */
-    public function createTableSQLParams($tablename, $fieldDefs, $indices, $engine = null)
+    public function createTableSQLParams(string $table_name, array $field_definitions, array $indices): string
     {
-        if (empty($engine) && isset($fieldDefs['engine'])) {
-            $engine = $fieldDefs['engine'];
+        if (empty($engine) && isset($field_definitions['engine'])) {
+            $engine = $field_definitions['engine'];
         }
         if (!$this->isEngineEnabled($engine)) {
             $engine = '';
         }
 
-        $columns = $this->columnSQLRep($fieldDefs, false, $tablename);
+        $columns = $this->columnSQLRep($field_definitions, false, $table_name);
         if (empty($columns)) {
             return false;
         }
@@ -789,7 +803,7 @@ class MysqlManager extends DBManager
         $collation = $this->getCollation();
         $charset = $this->getCharset();
 
-        $sql = "CREATE TABLE $tablename ($columns $keys) CHARACTER SET $charset COLLATE $collation";
+        $sql = "CREATE TABLE $table_name ($columns $keys) CHARACTER SET $charset COLLATE $collation";
 
         if (!empty($engine)) {
             $sql .= " ENGINE=$engine";
@@ -802,7 +816,7 @@ class MysqlManager extends DBManager
      * Does this type represent text (i.e., non-varchar) value?
      * @param string $type
      */
-    public function isTextType($type)
+    public function isTextType(string $type): bool
     {
         $type = $this->getColumnType(strtolower($type));
 
@@ -812,13 +826,13 @@ class MysqlManager extends DBManager
     /**
      * @see DBManager::oneColumnSQLRep()
      */
-    protected function oneColumnSQLRep($fieldDef, $ignoreRequired = false, $table = '', $return_as_array = false)
+    protected function oneColumnSQLRep(array $field_definition, bool $ignore_required = false, string $table = '', bool $return_as_array = false): array|string
     {
         // always return as array for post-processing
-        $ref = parent::oneColumnSQLRep($fieldDef, $ignoreRequired, $table, true);
+        $ref = parent::oneColumnSQLRep($field_definition, $ignore_required, $table, true);
 
-        if ($ref['colType'] == 'int' && !empty($fieldDef['len'])) {
-            $ref['colType'] .= "(" . $fieldDef['len'] . ")";
+        if ($ref['colType'] == 'int' && !empty($field_definition['len'])) {
+            $ref['colType'] .= "(" . $field_definition['len'] . ")";
         }
 
         // bug 22338 - don't set a default value on text or blob fields
@@ -833,19 +847,19 @@ class MysqlManager extends DBManager
 
         if ($return_as_array) {
             return $ref;
-        } else {
-            return "{$ref['name']} {$ref['colType']} {$ref['default']} {$ref['required']} {$ref['auto_increment']}";
         }
+
+        return "{$ref['name']} {$ref['colType']} {$ref['default']} {$ref['required']} {$ref['auto_increment']}";
     }
 
     /**
      * @see DBManager::changeColumnSQL()
      */
-    protected function changeColumnSQL($tablename, $fieldDefs, $action, $ignoreRequired = false)
+    protected function changeColumnSQL($table_name, array $field_definitions, string $action, $ignoreRequired = false): array|string
     {
         $columns = array();
-        if ($this->isFieldArray($fieldDefs)) {
-            foreach ($fieldDefs as $def) {
+        if ($this->isFieldArray($field_definitions)) {
+            foreach ($field_definitions as $def) {
                 if ($action == 'drop') {
                     $columns[] = $def['name'];
                 } else {
@@ -854,13 +868,13 @@ class MysqlManager extends DBManager
             }
         } else {
             if ($action == 'drop') {
-                $columns[] = $fieldDefs['name'];
+                $columns[] = $field_definitions['name'];
             } else {
-                $columns[] = $this->oneColumnSQLRep($fieldDefs);
+                $columns[] = $this->oneColumnSQLRep($field_definitions);
             }
         }
 
-        return "ALTER TABLE $tablename $action COLUMN " . implode(",$action column ", $columns);
+        return "ALTER TABLE $table_name $action COLUMN " . implode(",$action column ", $columns);
     }
 
     /**
@@ -875,7 +889,7 @@ class MysqlManager extends DBManager
      * @param string $alter_action
      * @return string SQL Statement
      */
-    protected function keysSQL($indices, $alter_table = false, $alter_action = '')
+    protected function keysSQL($indices, $alter_table = false, $alter_action = ''): string
     {
         // check if the passed value is an array of fields.
         // if not, convert it into an array
@@ -888,7 +902,7 @@ class MysqlManager extends DBManager
             if (!empty($index['db']) && $index['db'] != $this->dbType) {
                 continue;
             }
-            if (isset($index['source']) && $index['source'] != 'db') {
+            if (isset($index['source']) && $index['source'] !== 'db') {
                 continue;
             }
 
@@ -925,7 +939,7 @@ class MysqlManager extends DBManager
                     }
                     break;
                 case 'fulltext':
-                    if ($this->full_text_indexing_installed()) {
+                    if ($this->isFullTextIndexingInstalled()) {
                         $columns[] = " FULLTEXT ($fields)";
                     } else {
                         $GLOBALS['log']->debug(
@@ -947,7 +961,7 @@ class MysqlManager extends DBManager
     /**
      * @see DBManager::setAutoIncrement()
      */
-    protected function setAutoIncrement($table, $field_name)
+    protected function setAutoIncrement(string $table, string $field_name): string
     {
         return "auto_increment";
     }
@@ -958,7 +972,7 @@ class MysqlManager extends DBManager
      * @param string $table tablename
      * @param string $field_name
      */
-    public function setAutoIncrementStart($table, $field_name, $start_value)
+    public function setAutoIncrementStart(string $table, string $field_name, $start_value): string
     {
         $start_value = (int)$start_value;
 
@@ -972,7 +986,7 @@ class MysqlManager extends DBManager
      * @param string $field_name
      * @return string
      */
-    public function getAutoIncrement($table, $field_name)
+    public function getAutoIncrement(string $table, string $field_name): string
     {
         $result = $this->query("SHOW TABLE STATUS LIKE '$table'");
         $row = $this->fetchByAssoc($result);
@@ -986,10 +1000,10 @@ class MysqlManager extends DBManager
     /**
      * @see DBManager::get_indices()
      */
-    public function get_indices($tablename)
+    public function get_indices(string $table_name): array
     {
         //find all unique indexes and primary keys.
-        $result = $this->query("SHOW INDEX FROM $tablename");
+        $result = $this->query("SHOW INDEX FROM $table_name");
 
         $indices = array();
         while (($row = $this->fetchByAssoc($result)) != null) {
@@ -1014,9 +1028,9 @@ class MysqlManager extends DBManager
     }
 
     /**
-     * @see DBManager::add_drop_constraint()
+     * @see DBManager::addDropConstraint()
      */
-    public function add_drop_constraint($table, $definition, $drop = false)
+    public function addDropConstraint(string $table, array $definition, $drop = false): string
     {
         $type = $definition['type'];
         $fields = implode(',', $definition['fields']);
@@ -1070,7 +1084,7 @@ class MysqlManager extends DBManager
      * @param bool $suppress Message to log if error occurs
      * @return array    single row from the query
      */
-    public function fetchOne($sql, $dieOnError = false, $msg = '', $suppress = false)
+    public function fetchOne(string $sql, bool $dieOnError = false, string $msg = '', bool $suppress = false): array
     {
         if (stripos($sql, ' LIMIT ') === false) {
             // little optimization to just fetch one row
@@ -1081,9 +1095,9 @@ class MysqlManager extends DBManager
     }
 
     /**
-     * @see DBManager::full_text_indexing_installed()
+     * @see DBManager::isFullTextIndexingInstalled()
      */
-    public function full_text_indexing_installed($dbname = null)
+    public function isFullTextIndexingInstalled(string $dbname = null): bool
     {
         return $this->isEngineEnabled('MyISAM');
     }
@@ -1091,47 +1105,47 @@ class MysqlManager extends DBManager
     /**
      * @see DBManager::massageFieldDef()
      */
-    public function massageFieldDef(&$fieldDef, $tablename)
+    public function massageFieldDef(array &$field_definition, string $table_name): void
     {
-        parent::massageFieldDef($fieldDef, $tablename);
+        parent::massageFieldDef($field_definition, $table_name);
 
-        if (isset($fieldDef['default']) &&
-            ($fieldDef['dbType'] == 'text'
-                || $fieldDef['dbType'] == 'blob'
-                || $fieldDef['dbType'] == 'longtext'
-                || $fieldDef['dbType'] == 'longblob')
+        if (isset($field_definition['default']) &&
+            ($field_definition['dbType'] === 'text'
+                || $field_definition['dbType'] === 'blob'
+                || $field_definition['dbType'] === 'longtext'
+                || $field_definition['dbType'] === 'longblob')
         ) {
-            unset($fieldDef['default']);
+            unset($field_definition['default']);
         }
-        if ($fieldDef['dbType'] == 'uint') {
-            $fieldDef['len'] = '10';
+        if ($field_definition['dbType'] === 'uint') {
+            $field_definition['len'] = '10';
         }
-        if ($fieldDef['dbType'] == 'ulong') {
-            $fieldDef['len'] = '20';
+        if ($field_definition['dbType'] === 'ulong') {
+            $field_definition['len'] = '20';
         }
-        if ($fieldDef['dbType'] == 'bool') {
-            $fieldDef['type'] = 'tinyint';
+        if ($field_definition['dbType'] === 'bool') {
+            $field_definition['type'] = 'tinyint';
         }
-        if ($fieldDef['dbType'] == 'bool' && empty($fieldDef['default'])) {
-            $fieldDef['default'] = '0';
+        if ($field_definition['dbType'] === 'bool' && empty($field_definition['default'])) {
+            $field_definition['default'] = '0';
         }
-        if (($fieldDef['dbType'] == 'varchar' || $fieldDef['dbType'] == 'enum') && empty($fieldDef['len'])) {
-            $fieldDef['len'] = '255';
+        if (($field_definition['dbType'] === 'varchar' || $field_definition['dbType'] === 'enum') && empty($field_definition['len'])) {
+            $field_definition['len'] = '255';
         }
-        if ($fieldDef['dbType'] == 'uint') {
-            $fieldDef['len'] = '10';
+        if ($field_definition['dbType'] === 'uint') {
+            $field_definition['len'] = '10';
         }
-        if ($fieldDef['dbType'] == 'int' && empty($fieldDef['len'])) {
-            $fieldDef['len'] = '11';
+        if ($field_definition['dbType'] === 'int' && empty($field_definition['len'])) {
+            $field_definition['len'] = '11';
         }
 
-        if ($fieldDef['dbType'] == 'decimal') {
-            if (isset($fieldDef['len'])) {
-                if (strstr((string)$fieldDef['len'], ",") === false) {
-                    $fieldDef['len'] .= ",0";
+        if ($field_definition['dbType'] === 'decimal') {
+            if (isset($field_definition['len'])) {
+                if (strpos((string)$field_definition['len'], ",") === false) {
+                    $field_definition['len'] .= ",0";
                 }
             } else {
-                $fieldDef['len'] = '10,0';
+                $field_definition['len'] = '10,0';
             }
         }
     }
@@ -1142,18 +1156,24 @@ class MysqlManager extends DBManager
      * @param string $name table name
      * @return string SQL statement
      */
-    public function dropTableNameSQL($name)
+    public function dropTableNameSQL(string $name): string
     {
-        return "DROP TABLE IF EXISTS " . $name;
+        return 'DROP TABLE IF EXISTS ' . $name;
     }
 
-    public function dropIndexes($tablename, $indexes, $execute = true)
+    /**
+     * @param $table_name
+     * @param array $indexes
+     * @param bool $execute
+     * @return string
+     */
+    public function dropIndexes(string $table_name, array $indexes, bool $execute = true): string
     {
         $sql = array();
         foreach ($indexes as $index) {
             $name = $index['name'];
             if ($execute) {
-                unset(self::$index_descriptions[$tablename][$name]);
+                unset(self::$index_descriptions[$table_name][$name]);
             }
             if ($index['type'] == 'primary') {
                 $sql[] = 'DROP PRIMARY KEY';
@@ -1162,7 +1182,7 @@ class MysqlManager extends DBManager
             }
         }
         if (!empty($sql)) {
-            $sql = "ALTER TABLE $tablename " . implode(",", $sql) . ";";
+            $sql = "ALTER TABLE $table_name " . implode(",", $sql) . ";";
             if ($execute) {
                 $this->query($sql);
             }
@@ -1177,7 +1197,7 @@ class MysqlManager extends DBManager
      * Get default collation settings
      * @return string
      */
-    public function getCollation()
+    public function getCollation(): string
     {
         $collation = $this->getOption('collation');
         if (empty($collation)) {
@@ -1191,7 +1211,7 @@ class MysqlManager extends DBManager
      * Get default charset settings
      * @return string
      */
-    public function getCharset()
+    public function getCharset(): string
     {
         $charset = $this->getOption('charset');
         if (empty($charset)) {
@@ -1205,7 +1225,7 @@ class MysqlManager extends DBManager
      * List of available collation settings
      * @return string
      */
-    public function getDefaultCollation()
+    public function getDefaultCollation(): ?string
     {
         return 'utf8_general_ci';
     }
@@ -1214,7 +1234,7 @@ class MysqlManager extends DBManager
      * Get default charset settings
      * @return string
      */
-    public function getDefaultCharset()
+    public function getDefaultCharset(): string
     {
         return 'utf8';
     }
@@ -1223,9 +1243,9 @@ class MysqlManager extends DBManager
      * List of available collation settings
      * @return array
      */
-    public function getCollationList()
+    public function getCollationList(): array
     {
-        $q = "SHOW COLLATION LIKE 'utf8%'";
+        $q = 'SHOW COLLATION LIKE \'utf8%\'';
         $r = $this->query($q);
         $res = array();
         while ($a = $this->fetchByAssoc($r)) {
@@ -1239,15 +1259,19 @@ class MysqlManager extends DBManager
      * (non-PHPdoc)
      * @see DBManager::renameColumnSQL()
      */
-    public function renameColumnSQL($tablename, $column, $newname)
+    public function renameColumnSQL($table_name, $column, $new_name): void
     {
-        $field = $this->describeField($column, $tablename);
-        $field['name'] = $newname;
+        $field = $this->describeField($column, $table_name);
+        $field['name'] = $new_name;
 
-        return "ALTER TABLE $tablename CHANGE COLUMN $column " . $this->oneColumnSQLRep($field);
+        return "ALTER TABLE $table_name CHANGE COLUMN $column " . $this->oneColumnSQLRep($field);
     }
 
-    public function emptyValue($type)
+    /**
+     * @param $type
+     * @return int|mixed|string
+     */
+    public function emptyValue($type): mixed
     {
         $ctype = $this->getColumnType($type);
         if ($ctype == "datetime") {
@@ -1267,11 +1291,11 @@ class MysqlManager extends DBManager
      * (non-PHPdoc)
      * @see DBManager::lastDbError()
      */
-    public function lastDbError()
+    public function lastDbError(): bool|string
     {
         if ($this->database) {
             if (mysql_errno($this->database)) {
-                return "MySQL error " . mysql_errno($this->database) . ": " . mysql_error($this->database);
+                return 'MySQL error ' . mysql_errno($this->database) . ': ' . mysql_error($this->database);
             }
         } else {
             $err = mysql_error();
@@ -1303,17 +1327,17 @@ class MysqlManager extends DBManager
      * @param array $must_terms Search terms that have to be in the result
      * @param array $exclude_terms Search terms that have to be not in the result
      */
-    public function getFulltextQuery($field, $terms, $must_terms = array(), $exclude_terms = array())
+    public function getFulltextQuery(string $field, array $terms, array $must_terms = array(), array $exclude_terms = array()): string
     {
         $condition = array();
         foreach ($terms as $term) {
             $condition[] = $this->quoteTerm($term);
         }
         foreach ($must_terms as $term) {
-            $condition[] = "+" . $this->quoteTerm($term);
+            $condition[] = '+' . $this->quoteTerm($term);
         }
         foreach ($exclude_terms as $term) {
-            $condition[] = "-" . $this->quoteTerm($term);
+            $condition[] = '-' . $this->quoteTerm($term);
         }
         $condition = $this->quoted(implode(" ", $condition));
 
@@ -1327,7 +1351,7 @@ class MysqlManager extends DBManager
     protected function getCharsetInfo()
     {
         $charsets = array();
-        $res = $this->query("show variables like 'character\\_set\\_%'");
+        $res = $this->query('show variables like \'character\_set\_%\'');
         while ($row = $this->fetchByAssoc($res)) {
             $charsets[$row['Variable_name']] = $row['Value'];
         }
@@ -1335,7 +1359,10 @@ class MysqlManager extends DBManager
         return $charsets;
     }
 
-    public function getDbInfo()
+    /**
+     * @return array
+     */
+    public function getDbInfo(): ?array
     {
         $charsets = $this->getCharsetInfo();
         $charset_str = array();
@@ -1344,22 +1371,32 @@ class MysqlManager extends DBManager
         }
 
         return array(
-            "MySQL Version" => @mysql_get_client_info(),
-            "MySQL Host Info" => @mysql_get_host_info($this->database),
-            "MySQL Server Info" => @mysql_get_server_info($this->database),
-            "MySQL Client Encoding" => @mysql_client_encoding($this->database),
-            "MySQL Character Set Settings" => implode(", ", $charset_str),
+            'MySQL Version' => @mysql_get_client_info(),
+            'MySQL Host Info' => @mysql_get_host_info($this->database),
+            'MySQL Server Info' => @mysql_get_server_info($this->database),
+            'MySQL Client Encoding' => @mysql_client_encoding($this->database),
+            'MySQL Character Set Settings' => implode(', ', $charset_str),
         );
     }
 
-    public function validateQuery($query)
+    /**
+     * Check if this query is valid
+     * Validates only SELECT queries
+     * @param string $query
+     * @return bool
+     */
+    public function validateQuery(string $query): bool
     {
         $res = $this->query("EXPLAIN $query");
 
         return !empty($res);
     }
 
-    protected function makeTempTableCopy($table)
+    /**
+     * @param $table
+     * @return bool
+     */
+    protected function makeTempTableCopy(string $table): bool
     {
         $this->log->debug("creating temp table for [$table]...");
         $result = $this->query("SHOW CREATE TABLE {$table}");
@@ -1392,13 +1429,13 @@ class MysqlManager extends DBManager
      * @param string query The query to test.
      * @return string Non-empty if error found
      */
-    protected function verifyAlterTable($table, $query)
+    protected function verifyAlterTable(string $table, string $query): string
     {
-        $this->log->debug("verifying ALTER TABLE");
+        $this->log->debug('verifying ALTER TABLE');
         // Skipping ALTER TABLE [table] DROP PRIMARY KEY because primary keys are not being copied
         // over to the temp tables
         if (strpos(strtoupper($query), 'DROP PRIMARY KEY') !== false) {
-            $this->log->debug("Skipping DROP PRIMARY KEY");
+            $this->log->debug('Skipping DROP PRIMARY KEY');
 
             return '';
         }
@@ -1418,7 +1455,7 @@ class MysqlManager extends DBManager
             $this->query($tempTableTestQuery, false, "Preflight Failed for: {$query}");
         } else {
             // test insertion of an index on a table
-            $tempTableTestQuery_idx = str_replace("ADD INDEX `idx_", "ADD INDEX `temp_idx_", $tempTableTestQuery);
+            $tempTableTestQuery_idx = str_replace('ADD INDEX `idx_', 'ADD INDEX `temp_idx_', $tempTableTestQuery);
             $this->log->debug('testing query on temp table: [' . $tempTableTestQuery_idx . ']');
             $this->query($tempTableTestQuery_idx, false, "Preflight Failed for: {$query}");
         }
@@ -1431,7 +1468,13 @@ class MysqlManager extends DBManager
         return '';
     }
 
-    protected function verifyGenericReplaceQuery($querytype, $table, $query)
+    /**
+     * @param $querytype
+     * @param $table
+     * @param $query
+     * @return bool|string
+     */
+    protected function verifyGenericReplaceQuery(string $querytype, string $table, string $query): bool|string
     {
         $this->log->debug("verifying $querytype statement");
 
@@ -1458,9 +1501,9 @@ class MysqlManager extends DBManager
      * @param string query The query to test.
      * @return string Non-empty if error found
      */
-    public function verifyDropTable($table, $query)
+    public function verifyDropTable(string $table, string $query): bool|string
     {
-        return $this->verifyGenericReplaceQuery("DROP TABLE", $table, $query);
+        return $this->verifyGenericReplaceQuery('DROP TABLE', $table, $query);
     }
 
     /**
@@ -1469,9 +1512,9 @@ class MysqlManager extends DBManager
      * @param string query The query to test.
      * @return string Non-empty if error found
      */
-    public function verifyInsertInto($table, $query)
+    public function verifyInsertInto(string $table, string $query): bool|string
     {
-        return $this->verifyGenericReplaceQuery("INSERT INTO", $table, $query);
+        return $this->verifyGenericReplaceQuery('INSERT INTO', $table, $query);
     }
 
     /**
@@ -1480,9 +1523,9 @@ class MysqlManager extends DBManager
      * @param string query The query to test.
      * @return string Non-empty if error found
      */
-    public function verifyUpdate($table, $query)
+    public function verifyUpdate(string $table, string $query): bool|string
     {
-        return $this->verifyGenericReplaceQuery("UPDATE", $table, $query);
+        return $this->verifyGenericReplaceQuery('UPDATE', $table, $query);
     }
 
     /**
@@ -1491,18 +1534,18 @@ class MysqlManager extends DBManager
      * @param string query The query to test.
      * @return string Non-empty if error found
      */
-    public function verifyDeleteFrom($table, $query)
+    public function verifyDeleteFrom(string $table, string $query): bool|string
     {
-        return $this->verifyGenericReplaceQuery("DELETE FROM", $table, $query);
+        return $this->verifyGenericReplaceQuery('DELETE FROM', $table, $query);
     }
 
     /**
      * Check if certain database exists
      * @param string $dbname
      */
-    public function dbExists($dbname)
+    public function dbExists(string $dbname): bool
     {
-        $db = $this->getOne("SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = " . $this->quoted($dbname));
+        $db = $this->getOne('SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = ' . $this->quoted($dbname));
 
         return !empty($db);
     }
@@ -1511,7 +1554,7 @@ class MysqlManager extends DBManager
      * Select database
      * @param string $dbname
      */
-    protected function selectDb($dbname)
+    protected function selectDb(string $dbname)
     {
         return mysql_select_db($dbname);
     }
@@ -1520,10 +1563,10 @@ class MysqlManager extends DBManager
      * Check if certain DB user exists
      * @param string $username
      */
-    public function userExists($username)
+    public function userExists(string $username)
     {
-        $db = $this->getOne("SELECT DATABASE()");
-        if (!$this->selectDb("mysql")) {
+        $db = $this->getOne('SELECT DATABASE()');
+        if (!$this->selectDb('mysql')) {
             return false;
         }
         $user = $this->getOne("select count(*) from user where user = " . $this->quoted($username));
@@ -1541,17 +1584,17 @@ class MysqlManager extends DBManager
      * @param string $user
      * @param string $password
      */
-    public function createDbUser($database_name, $host_name, $user, $password)
+    public function createDbUser(string $database_name, string $host_name, string $user, string $password)
     {
         $qpassword = $this->quote($password);
         $this->query("GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, ALTER, DROP, INDEX
-       ON `$database_name`.*
-       TO \"$user\"@\"$host_name\"
-       IDENTIFIED BY '{$qpassword}';", true);
+                            ON `$database_name`.*
+                            TO \"$user\"@\"$host_name\"
+                            IDENTIFIED BY '{$qpassword}';", true);
 
         $this->query("SET PASSWORD FOR \"{$user}\"@\"{$host_name}\" = password('{$qpassword}');", true);
         if ($host_name != 'localhost') {
-            $this->createDbUser($database_name, "localhost", $user, $password);
+            $this->createDbUser($database_name, 'localhost', $user, $password);
         }
     }
 
@@ -1559,7 +1602,7 @@ class MysqlManager extends DBManager
      * Create a database
      * @param string $dbname
      */
-    public function createDatabase($dbname)
+    public function createDatabase(string $dbname)
     {
         $collation = $this->getCollation();
         $charset = $this->getCharset();
@@ -1567,7 +1610,10 @@ class MysqlManager extends DBManager
         $this->query("CREATE DATABASE `$dbname` CHARACTER SET $charset COLLATE $collation", true);
     }
 
-    public function preInstall()
+    /**
+     * @return void
+     */
+    public function preInstall(): void
     {
         $setup_db_database_name = '';
         $collation = $this->getCollation();
@@ -1581,7 +1627,7 @@ class MysqlManager extends DBManager
      * Drop a database
      * @param string $dbname
      */
-    public function dropDatabase($dbname)
+    public function dropDatabase(string $dbname)
     {
         return $this->query("DROP DATABASE IF EXISTS `$dbname`", true);
     }
@@ -1590,16 +1636,16 @@ class MysqlManager extends DBManager
      * Check if this driver can be used
      * @return bool
      */
-    public function valid()
+    public function valid(): bool
     {
-        return function_exists("mysql_connect");
+        return function_exists('mysql_connect');
     }
 
     /**
      * Check DB version
      * @see DBManager::canInstall()
      */
-    public function canInstall()
+    public function canInstall(): bool
     {
         $db_version = $this->version();
         if (empty($db_version)) {
@@ -1612,19 +1658,22 @@ class MysqlManager extends DBManager
         return true;
     }
 
-    public function installConfig()
+    /**
+     * @return array
+     */
+    public function installConfig(): void
     {
         return array(
             'LBL_DBCONFIG_MSG3' => array(
-                "setup_db_database_name" => array("label" => 'LBL_DBCONF_DB_NAME', "required" => true),
+                'setup_db_database_name' => array('label' => 'LBL_DBCONF_DB_NAME', 'required' => true),
             ),
             'LBL_DBCONFIG_MSG2' => array(
-                "setup_db_host_name" => array("label" => 'LBL_DBCONF_HOST_NAME', "required" => true),
+                'setup_db_host_name' => array('label' => 'LBL_DBCONF_HOST_NAME', 'required' => true),
             ),
             'LBL_DBCONF_TITLE_USER_INFO' => array(),
             'LBL_DBCONFIG_B_MSG1' => array(
-                "setup_db_admin_user_name" => array("label" => 'LBL_DBCONF_DB_ADMIN_USER', "required" => true),
-                "setup_db_admin_password" => array("label" => 'LBL_DBCONF_DB_ADMIN_PASSWORD', "type" => "password"),
+                'setup_db_admin_user_name' => array('label' => 'LBL_DBCONF_DB_ADMIN_USER', 'required' => true),
+                'setup_db_admin_password' => array('label' => 'LBL_DBCONF_DB_ADMIN_PASSWORD', 'type' => 'password'),
             )
         );
     }
@@ -1634,7 +1683,7 @@ class MysqlManager extends DBManager
      * @abstract
      * @param string $tableName
      */
-    public function disableKeys($tableName)
+    public function disableKeys(string $tableName): void
     {
         return $this->query('ALTER TABLE ' . $tableName . ' DISABLE KEYS');
     }
@@ -1644,7 +1693,7 @@ class MysqlManager extends DBManager
      * @abstract
      * @param string $tableName
      */
-    public function enableKeys($tableName)
+    public function enableKeys(string $tableName): void
     {
         return $this->query('ALTER TABLE ' . $tableName . ' ENABLE KEYS');
     }
@@ -1654,7 +1703,7 @@ class MysqlManager extends DBManager
      * Note that depending on the database that this may also be an empty string.
      * @return string
      */
-    public function getFromDummyTable()
+    public function getFromDummyTable(): string
     {
         return '';
     }
@@ -1666,7 +1715,7 @@ class MysqlManager extends DBManager
      * @return string
      */
 
-    public function getGuidSQL()
+    public function getGuidSQL(): string
     {
         return 'UUID()';
     }
