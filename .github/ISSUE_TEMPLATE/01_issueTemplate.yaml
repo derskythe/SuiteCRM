@@ -5,12 +5,11 @@ body:
   - type: markdown
     attributes:
       value: |
-        Before you open an issue:
-        - check if a similar issue already exists or has been closed previously.
+        Before you open an issue, please:
+        - check if a similar issue already exists or has been closed before.
         - if you have discovered a security risk, a security risk, please refer to our [Security Policy](https://docs.suitecrm.com/community/security-policy)
-        
-        Please note, only issues found which are valid in supported versions of SuiteCRM 7, will be investigated.
-        Issues found in SuiteCRM 8 and above should be raised [here](https://github.com/salesagility/SuiteCRM-Core/issues/new/choose)
+
+        Issues found in SuiteCRM 7 should be raised [here](https://github.com/salesagility/SuiteCRM/issues/new/choose)
 
   - type: textarea
     id: issue
@@ -60,7 +59,7 @@ body:
     attributes:
       label: Version
       description: What version of SuiteCRM are you running?
-      placeholder: ex. 7.14.3
+      placeholder: ex. 8.6.0
     validations:
       required: true
   - type: dropdown
@@ -101,7 +100,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        > **Remember to support your issue by voting!** 
+        > **Remember to support your issue by voting!**
         Get more information [here](https://docs.suitecrm.com/community/raising-issues/issues-voting/)
   - type: markdown
     attributes:

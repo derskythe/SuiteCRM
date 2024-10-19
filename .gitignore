@@ -1,128 +1,325 @@
-## First part from https://github.com/github/gitignore/blob/master/SugarCRM.gitignore
-# Ignore custom .htaccess stuff.
-/.htaccess
-# Ignore large parts of the annoying cache directory without breaking things.
-cache/*
-upload/*
-!upload/index.html
+### Angular template
+## Angular ##
+# compiled output
+dist/
+tmp/
+app/**/*.js
+app/**/*.js.map
+.angular/
+/.angular/cache
+.curl_check_main_page
+
+## SuiteCRM 8 ##
+## SugarCRM
+# Ignore the cache directory completely.
+# This will break the current behaviour. Which was often leading to
+# the misuse of the repository as backup replacement.
+# For development the cache directory can be safely ignored and
+# therefore it is ignored.
+/cache/*
+# Gatsby files
+.cache/
+/app/cache/*
+/var/cache/*
+# Optional stylelint cache
+.stylelintcache
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+!/cache/index.html
+!app/cache/.gitkeep
+!var/cache/.gitkeep
+
 # Ignore some files and directories from the custom directory.
-custom/
-custom/history/*
-custom/blowfish/*
-custom/modulebuilder/*
-custom/working/*
-custom/modules/*/Ext/
-custom/modules/unified_search_modules_display.php
-# Ignore AOD indexes
-modules/AOD_Index/Index/*
-install/status.json
-# Ignore PDF Fonts
-modules/AOS_PDF_Templates/PDF_Lib/ttfontdata/
-# Configuration files should be ignored.
+/custom/history/
+/custom/modulebuilder/
+/custom/working/
+/custom/modules/*/Ext/
+/custom/application/Ext/
+# Custom configuration should also be ignored.
 /config.php
 /config_override.php
-/config_si.php
-tests/config.test.php
-# Connector configuration should also be ignored.
-custom/modules/Connectors/connectors/sources/ext/*/*/config.php
+# The silent upgrade scripts aren't needed.
+/silentUpgrade*.php
 # Logs files can safely be ignored.
 *.log
-## IDE specific items
-# Eclipse
-*.pydevproject
-.project
-.metadata
-bin/**
-tmp/**
-tmp/**/*
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.classpath
-.settings/
-.loadpath
-# Emacs
-*~
-\#*\#
-/.emacs.desktop
-/.emacs.desktop.lock
-.elc
-auto-save-list
-tramp
-# IntelliJ Idea
-*.iml
-*.ipr
-*.iws
-.idea/
-.phpstorm.meta.php
-# NetBeans
-nbproject/
-# Vim
-.*.sw[a-z]
-*.un~
-Session.vim
-tags
-# Windows
-Thumbs.db
-Desktop.ini
-.DS_Store
-.DS_Store?
-# Microsoft Visual Studio
-*.sln
-*.suo
-*.phpproj
-# Microsoft Visual Studio Code
-.vscode
-# Disytel
-lang_cmp.php
-.kdev4/
-SuiteCRM.kdev4
+# Ignore the new upload directories.
+/upload/*
+# Assets and user uploads
+/web/bundles/
+/web/uploads/
+/upload_backup/
+!/upload/index.html
 
-#Ignore composer vendor folder
-vendor/
-public/
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/public/dist/
+/public/extensions/
+/var/
+/vendor/
+# Parameters
+/app/config/parameters.yml
+/app/config/parameters.ini
+# Local configs
+config/autoload/*.local.php
 
-.php_cs.cache
+###< symfony/framework-bundle ###
 
+###> symfony/phpunit-bridge ###
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+.phpunit.cache
+/app/phpunit.xml
 
-#Ignore bower_components
-bower_components/
-node_modules/
+###< symfony/phpunit-bridge ###
 
+###> ng serve ###
+/proxy.conf.local.json
+/proxy.conf.dev.json
+/proxy.conf.prod.json
+###< ng serve ###
 
-#Ignore Sass Generated files in SuiteP
-themes/SuiteP/css/*.map
-themes/SuiteP/css/*/*.map
-themes/SuiteP/css/*/color-palette.css
-themes/SuiteP/css/*/variables.css
-tests/_output/*
+###> friendsofphp/php-cs-fixer ###
+/.php-cs-fixer.php
+/.php-cs-fixer.cache
+###< friendsofphp/php-cs-fixer ###
 
+# Symfony Logs
+/logs/
+/app/logs/*
+/var/logs/*
+/var/log/*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+libpeerconnection.log/
+testem.log
+### Laravel template
+!logs/.gitkeep
+!app/logs/.gitkeep
+!var/logs/.gitkeep
+!var/log/.gitkeep
+/app/spool/*
 
-#Ignore browserstack
-BrowserStackLocal
-browserstack.err
-cache/
-custom/**/
+# yarn v2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+.yarn/*
+### yarn template
+!.yarn/releases
+!.yarn/patches
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+!.yarn/cache
+
+# Dependencies
+node_modules
+jspm_packages/
+/dist/
+build/Release
+typings/
+.npm
+.eslintcache
+.node_repl_history
+*.tgz
+.yarn-integrity
+*.bna
+*.card
+**/Entity/*~
+*.mo
+*.tsbuildinfo
+# Next.js build output
+out
+# Nuxt.js build / generate output
+.nuxt
+
+# Custom
+/extensions/
+!extensions/.gitkeep
+!extensions/defaultExt/app
+!extensions/defaultExt/backend
+!extensions/defaultExt/config
+
+# Tests
+tests/_output/
+tests/_support/_generated/
+!tests/_output/.gitkeep
+!tests/_support/_generated/.gitkeep
+
+# Composer
+/*.phar
+
+# htacess
+/.htaccess
+
+# SASS
+/public/legacy/themes/suite8/css/*/style.css
+### Sass template
 .sass-cache/
+*.css.map
+*.sass.map
+*.scss.map
+/app/bootstrap.php.cache
+/var/bootstrap.php.cache
 
-# Ignore testing environment
-build/tmp/
+### PHPUnit template
+# Generated files
 
-# IMAP testing
-fakeImapResource
-include/Imap/ImapTestSettings.txt
+# Build data
+/build/
 
-# Ignore php-cs-fixer cache
-.php_cs.cache
+### Symfony template
+# Cache, session files and logs (Symfony3)
+/var/sessions/*
+!var/sessions/.gitkeep
 
-# Ignore custom codeception environments so they won't be committed.
-tests/_envs/custom.yml
-codeception.yml
+# Logs (Symfony4)
+# Managed by Composer
+/bin/*
+!bin/console
+!bin/symfony_requirements
 
-# Ignore dotenv files so they don't get commited to git.
-# Only .env.dist should be committed.
-.env
-.env.test
-.env.dev
+# PHPUnit
+
+# Build data
+# Backup entities generated with doctrine:generate:entities command
+
+# Embedded web-server pid file
+/.web-server-pid
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Directory for instrumented libs generated by jscoverage/JSCover
+lib-cov
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# nyc test coverage
+.nyc_output
+
+# Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
+.grunt
+
+# Bower dependency directory (https://bower.io/)
+bower_components
+
+# node-waf configuration
+.lock-wscript
+
+# Data
+data/logs/
+data/cache/
+data/sessions/
+data/tmp/
+temp/
+data/DoctrineORMModule/Proxy/
+data/DoctrineORMModule/cache/
+
+# Legacy ZF1
+demos/
+extras/documentation
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Coverage directory used by tools like istanbul
+*.lcov
+
+# Snowpack dependency directory (https://snowpack.dev/)
+web_modules/
+
+# vuepress build output
+.vuepress/dist
+
+# vuepress v2.x temp and cache directory
+.temp
+
+# Docusaurus cache and generated files
+.docusaurus
+
+# Serverless directories
+.serverless/
+
+# FuseBox cache
+.fusebox/
+
+# DynamoDB Local files
+.dynamodb/
+
+# TernJS port file
+.tern-port
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+### Vim template
+# Swap
+[._]*.s[a-v][a-z]
+!*.svg  # comment out if you don't need vector files
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Session
+Session.vim
+Sessionx.vim
+
+# Temporary
+.netrwhist
+*~
+# Auto-generated tag files
+tags
+# Persistent undo
+[._]*.un~
+
+
+# Laravel 4 specific
+bootstrap/compiled.php
+app/storage/
+
+# Laravel 5 & Lumen specific
+public/storage
+public/hot
+
+# Laravel 5 & Lumen specific with changed public path
+public_html/storage
+public_html/hot
+
+storage/*.key
+Homestead.yaml
+Homestead.json
+/.vagrant
+
+# dependencies
+bower_components/
+
+# misc
+connect.lock/
+coverage/
+
+# e2e
+e2e/*.js
+e2e/*.map
+
+# System Files
+.DS_Store/

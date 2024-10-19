@@ -1,53 +1,29 @@
-actor: Tester
+namespace: App\Tests
+actor_suffix: Tester
 paths:
   tests: tests
-  log: tests/_output
+  output: tests/_output
   data: tests/_data
   support: tests/_support
-  envs: tests/_envs
 settings:
-  bootstrap: _bootstrap.php
-  colors: true
   memory_limit: 16000M
+  # Disable for faster test execution
+  lint: true
+  colors: true
+  backup_globals: true
+  report_useless_tests: true
+  disallow_test_output: true
+  # Significantly slows down test execution when true
+  be_strict_about_changes_to_global_state: false
 extensions:
   enabled:
     - Codeception\Extension\RunFailed
+params:
+  - .env
 coverage:
   enabled: true
-  remote: false
-  low_limit: 50
-  high_limit: 90
   include:
-    - ModuleInstall/*.php
-    - data/*.php
-    - include/*.php
-    - install/*.php
-    - jssource/*.php
-    - lib/*.php
-    - metadata/*.php
-    - modules/*.php
-    - service/*.php
-    - soap/*.php
-    - themes/*.php
+    - core/*
   exclude:
-    - include/SuiteGraphs/*
-    - include/social/*
-    - include/reCaptcha/*
-    - include/phpmailer/*
-    - include/Pear/*
-    - include/pclzip/*
-    - include/nusoap/*
-    - include/HTTP_WebDAV_Server/*
-    - include/HTMLPurifier/*
-    - include/ytree/*
-    - include/php-sql-parser.php
-    - include/parsecsv.lib.php
-    - modules/AOS_PDF_Templates/PDF_Lib/*
-    - modules/AOD_Index/Lib/*
-    - modules/Users/authentication/SAML2Authenticate/lib/*
-    - install/demoData.en_us.php
-    - include/tcpdf/*
-    - modules/AOR_Charts/lib/*
-params:
-  - env
-  - .env.test
+    - core/app/*
+bootstrap: bootstrap.php
